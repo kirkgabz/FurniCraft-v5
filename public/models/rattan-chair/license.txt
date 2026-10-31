@@ -1,0 +1,13 @@
+Rattan armchair
+Source: cadnav.com (free 3D models library)
+
+Used under cadnav.com's free-model terms, which permit use in a commercial
+project as part of the artwork, permit modification, prohibit reselling or
+redistributing the model on its own, and require the source to be indicated.
+The source is credited in the studio's side panel via StudioModel.credit.
+
+scene.glb is not the file as downloaded. It was converted from the supplied
+binary FBX: vertices welded (810,180 -> 194,281, no change to the silhouette),
+materials converted to physically based ones named "frame" and "weave", and the
+whole chair turned a quarter turn about Y so its width runs along X, which is
+the axis the studio's rig resizes.

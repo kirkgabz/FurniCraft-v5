@@ -1,0 +1,11 @@
+Model Information:
+* title:	Rattan stool
+* source:	https://sketchfab.com/3d-models/rattan-stool-6b7a0dae71de4afd96108d4ccf15e291
+* author:	Antoine Dresen (https://sketchfab.com/adresen)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Rattan stool" (https://sketchfab.com/3d-models/rattan-stool-6b7a0dae71de4afd96108d4ccf15e291) by Antoine Dresen (https://sketchfab.com/adresen) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

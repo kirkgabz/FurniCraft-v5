@@ -1,0 +1,299 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1214 1643" width="1214" height="1643">
+<rect width="1214" height="1643" fill="#FBF9F5"/>
+<text x="40" y="44" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="20" font-weight="700" fill="#2B1810">Figure 4.12b  Entity Relationship Diagram, Part 2 of 4</text>
+<text x="40" y="70" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14.5" font-weight="600" fill="#C67D38">Shops, subscriptions and AI generation: shop profiles, plan usage, plan payments, 3D generation jobs and design templates</text>
+<path d="M 790 1264 L 926 1264 L 926 310 L 960 310" fill="none" stroke="#5A3D2B" stroke-width="1.4" stroke-linejoin="round"/>
+<path d="M 803 1264 L 790 1257 M 803 1264 L 790 1264 M 803 1264 L 790 1271" stroke="#2B1810" stroke-width="1.5" fill="none"/>
+<path d="M 808 1257 L 808 1271" stroke="#2B1810" stroke-width="1.6"/>
+<path d="M 951 304 L 951 316" stroke="#2B1810" stroke-width="1.6"/>
+<path d="M 946 304 L 946 316" stroke="#2B1810" stroke-width="1.6"/>
+<path d="M 490 1244 L 374 1244 L 374 700 L 340 700" fill="none" stroke="#5A3D2B" stroke-width="1.4" stroke-linejoin="round"/>
+<path d="M 477 1244 L 490 1237 M 477 1244 L 490 1244 M 477 1244 L 490 1251" stroke="#2B1810" stroke-width="1.5" fill="none"/>
+<path d="M 472 1237 L 472 1251" stroke="#2B1810" stroke-width="1.6"/>
+<path d="M 349 694 L 349 706" stroke="#2B1810" stroke-width="1.6"/>
+<path d="M 354 694 L 354 706" stroke="#2B1810" stroke-width="1.6"/>
+<path d="M 340 172 L 960 172" fill="none" stroke="#5A3D2B" stroke-width="1.4" stroke-linejoin="round"/>
+<path d="M 353 172 L 340 165 M 353 172 L 340 172 M 353 172 L 340 179" stroke="#2B1810" stroke-width="1.5" fill="none"/>
+<path d="M 358 165 L 358 179" stroke="#2B1810" stroke-width="1.6"/>
+<path d="M 951 166 L 951 178" stroke="#2B1810" stroke-width="1.6"/>
+<path d="M 946 166 L 946 178" stroke="#2B1810" stroke-width="1.6"/>
+<path d="M 490 252 L 340 252" fill="none" stroke="#5A3D2B" stroke-width="1.4" stroke-linejoin="round"/>
+<path d="M 481 246 L 481 258" stroke="#2B1810" stroke-width="1.6"/>
+<path d="M 476 246 L 476 258" stroke="#2B1810" stroke-width="1.6"/>
+<path d="M 349 246 L 349 258" stroke="#2B1810" stroke-width="1.6"/>
+<path d="M 354 246 L 354 258" stroke="#2B1810" stroke-width="1.6"/>
+<path d="M 490 556 L 340 556" fill="none" stroke="#5A3D2B" stroke-width="1.4" stroke-linejoin="round"/>
+<path d="M 477 556 L 490 549 M 477 556 L 490 556 M 477 556 L 490 563" stroke="#2B1810" stroke-width="1.5" fill="none"/>
+<path d="M 472 549 L 472 563" stroke="#2B1810" stroke-width="1.6"/>
+<path d="M 349 550 L 349 562" stroke="#2B1810" stroke-width="1.6"/>
+<path d="M 354 550 L 354 562" stroke="#2B1810" stroke-width="1.6"/>
+<path d="M 790 576 L 824 576 L 824 270 L 960 270" fill="none" stroke="#5A3D2B" stroke-width="1.4" stroke-linejoin="round"/>
+<path d="M 803 576 L 790 569 M 803 576 L 790 576 M 803 576 L 790 583" stroke="#2B1810" stroke-width="1.5" fill="none"/>
+<path d="M 808 569 L 808 583" stroke="#2B1810" stroke-width="1.6"/>
+<path d="M 951 264 L 951 276" stroke="#2B1810" stroke-width="1.6"/>
+<path d="M 946 264 L 946 276" stroke="#2B1810" stroke-width="1.6"/>
+<path d="M 790 860 L 875 860 L 875 290 L 960 290" fill="none" stroke="#5A3D2B" stroke-width="1.4" stroke-linejoin="round"/>
+<path d="M 803 860 L 790 853 M 803 860 L 790 860 M 803 860 L 790 867" stroke="#2B1810" stroke-width="1.5" fill="none"/>
+<path d="M 808 853 L 808 867" stroke="#2B1810" stroke-width="1.6"/>
+<path d="M 951 284 L 951 296" stroke="#2B1810" stroke-width="1.6"/>
+<path d="M 946 284 L 946 296" stroke="#2B1810" stroke-width="1.6"/>
+<path d="M 490 840 L 456 840 L 456 680 L 340 680" fill="none" stroke="#5A3D2B" stroke-width="1.4" stroke-linejoin="round"/>
+<path d="M 477 840 L 490 833 M 477 840 L 490 840 M 477 840 L 490 847" stroke="#2B1810" stroke-width="1.5" fill="none"/>
+<path d="M 472 833 L 472 847" stroke="#2B1810" stroke-width="1.6"/>
+<path d="M 349 674 L 349 686" stroke="#2B1810" stroke-width="1.6"/>
+<path d="M 354 674 L 354 686" stroke="#2B1810" stroke-width="1.6"/>
+<rect x="40" y="110" width="300" height="600" rx="4" fill="#FFFFFF" stroke="#2B1810" stroke-width="1.4"/>
+<path d="M 40 114 a 4 4 0 0 1 4 -4 h 292 a 4 4 0 0 1 4 4 v 28 h -300 z" fill="#2B1810"/>
+<line x1="40" y1="142" x2="340" y2="142" stroke="#2B1810" stroke-width="1.2"/>
+<text x="50" y="131" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#FFFFFF">shops</text>
+<text x="50" y="155.8" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="9" font-weight="700" fill="#C67D38">PK</text>
+<text x="88" y="156.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#2B1810">id</text>
+<text x="330" y="156.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">uuid</text>
+<rect x="41" y="162" width="298" height="20" fill="#FAF6F0"/>
+<text x="50" y="175.8" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="9" font-weight="700" fill="#C67D38">FK</text>
+<text x="88" y="176.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#2B1810">user_id</text>
+<text x="330" y="176.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">uuid</text>
+<text x="88" y="196.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#2B1810">email</text>
+<text x="330" y="196.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">text</text>
+<rect x="41" y="202" width="298" height="20" fill="#FAF6F0"/>
+<text x="88" y="216.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#2B1810">shop_name</text>
+<text x="330" y="216.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">text</text>
+<text x="88" y="236.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#2B1810">description</text>
+<text x="330" y="236.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">text</text>
+<rect x="41" y="242" width="298" height="20" fill="#FAF6F0"/>
+<text x="88" y="256.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#2B1810">address</text>
+<text x="330" y="256.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">text</text>
+<text x="88" y="276.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#2B1810">status</text>
+<text x="330" y="276.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">text</text>
+<rect x="41" y="282" width="298" height="20" fill="#FAF6F0"/>
+<text x="88" y="296.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#2B1810">created_at</text>
+<text x="330" y="296.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">ts</text>
+<text x="88" y="316.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#2B1810">updated_at</text>
+<text x="330" y="316.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">ts</text>
+<rect x="41" y="322" width="298" height="20" fill="#FAF6F0"/>
+<text x="88" y="336.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#2B1810">bir_registered_name</text>
+<text x="330" y="336.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">text</text>
+<text x="88" y="356.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#2B1810">bir_document_url</text>
+<text x="330" y="356.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">text</text>
+<rect x="41" y="362" width="298" height="20" fill="#FAF6F0"/>
+<text x="88" y="376.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#2B1810">valid_id_url</text>
+<text x="330" y="376.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">text</text>
+<text x="88" y="396.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#2B1810">rejection_reason</text>
+<text x="330" y="396.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">text</text>
+<rect x="41" y="402" width="298" height="20" fill="#FAF6F0"/>
+<text x="88" y="416.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#2B1810">tagline</text>
+<text x="330" y="416.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">text</text>
+<text x="88" y="436.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#2B1810">cover_image_url</text>
+<text x="330" y="436.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">text</text>
+<rect x="41" y="442" width="298" height="20" fill="#FAF6F0"/>
+<text x="88" y="456.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#2B1810">gallery</text>
+<text x="330" y="456.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">jsonb</text>
+<text x="88" y="476.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#2B1810">phone</text>
+<text x="330" y="476.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">text</text>
+<rect x="41" y="482" width="298" height="20" fill="#FAF6F0"/>
+<text x="88" y="496.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#2B1810">hours</text>
+<text x="330" y="496.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">text</text>
+<text x="88" y="516.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#2B1810">payment_qr_url</text>
+<text x="330" y="516.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">text</text>
+<rect x="41" y="522" width="298" height="20" fill="#FAF6F0"/>
+<text x="88" y="536.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#2B1810">payment_instructions</text>
+<text x="330" y="536.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">text</text>
+<text x="88" y="556.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#2B1810">payment_account_name</text>
+<text x="330" y="556.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">text</text>
+<rect x="41" y="562" width="298" height="20" fill="#FAF6F0"/>
+<text x="88" y="576.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#2B1810">payment_account_number</text>
+<text x="330" y="576.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">text</text>
+<text x="88" y="596.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#2B1810">policies</text>
+<text x="330" y="596.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">text</text>
+<rect x="41" y="602" width="298" height="20" fill="#FAF6F0"/>
+<text x="88" y="616.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#2B1810">social_links</text>
+<text x="330" y="616.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">jsonb</text>
+<text x="88" y="636.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#2B1810">map_url</text>
+<text x="330" y="636.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">text</text>
+<rect x="41" y="642" width="298" height="20" fill="#FAF6F0"/>
+<text x="88" y="656.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#2B1810">is_active</text>
+<text x="330" y="656.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">bool</text>
+<text x="88" y="676.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#2B1810">allowed_materials</text>
+<text x="330" y="676.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">text[]</text>
+<rect x="41" y="682" width="298" height="20" fill="#FAF6F0"/>
+<text x="88" y="696.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#2B1810">logo_url</text>
+<text x="330" y="696.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">text</text>
+<rect x="490" y="210" width="300" height="240" rx="4" fill="#FFFFFF" stroke="#2B1810" stroke-width="1.4"/>
+<path d="M 490 214 a 4 4 0 0 1 4 -4 h 292 a 4 4 0 0 1 4 4 v 28 h -300 z" fill="#2B1810"/>
+<line x1="490" y1="242" x2="790" y2="242" stroke="#2B1810" stroke-width="1.2"/>
+<text x="500" y="231" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#FFFFFF">shop_subscriptions</text>
+<text x="500" y="255.8" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="9" font-weight="700" fill="#C67D38">PK FK</text>
+<text x="538" y="256.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#2B1810">shop_id</text>
+<text x="780" y="256.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">uuid</text>
+<rect x="491" y="262" width="298" height="20" fill="#FAF6F0"/>
+<text x="538" y="276.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#2B1810">tier</text>
+<text x="780" y="276.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">text</text>
+<text x="538" y="296.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#2B1810">period_start</text>
+<text x="780" y="296.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">ts</text>
+<rect x="491" y="302" width="298" height="20" fill="#FAF6F0"/>
+<text x="538" y="316.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#2B1810">period_end</text>
+<text x="780" y="316.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">ts</text>
+<text x="538" y="336.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#2B1810">generations_used</text>
+<text x="780" y="336.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">int</text>
+<rect x="491" y="342" width="298" height="20" fill="#FAF6F0"/>
+<text x="538" y="356.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#2B1810">generations_limit</text>
+<text x="780" y="356.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">int</text>
+<text x="538" y="376.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#2B1810">trial_used</text>
+<text x="780" y="376.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">bool</text>
+<rect x="491" y="382" width="298" height="20" fill="#FAF6F0"/>
+<text x="538" y="396.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#2B1810">retries_used</text>
+<text x="780" y="396.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">int</text>
+<text x="538" y="416.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#2B1810">updated_at</text>
+<text x="780" y="416.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">ts</text>
+<rect x="491" y="422" width="298" height="20" fill="#FAF6F0"/>
+<text x="538" y="436.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#2B1810">unrecorded_generations</text>
+<text x="780" y="436.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">int</text>
+<rect x="490" y="494" width="300" height="240" rx="4" fill="#FFFFFF" stroke="#2B1810" stroke-width="1.4"/>
+<path d="M 490 498 a 4 4 0 0 1 4 -4 h 292 a 4 4 0 0 1 4 4 v 28 h -300 z" fill="#2B1810"/>
+<line x1="490" y1="526" x2="790" y2="526" stroke="#2B1810" stroke-width="1.2"/>
+<text x="500" y="515" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#FFFFFF">subscription_payments</text>
+<text x="500" y="539.8" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="9" font-weight="700" fill="#C67D38">PK</text>
+<text x="538" y="540.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#2B1810">id</text>
+<text x="780" y="540.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">uuid</text>
+<rect x="491" y="546" width="298" height="20" fill="#FAF6F0"/>
+<text x="500" y="559.8" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="9" font-weight="700" fill="#C67D38">FK</text>
+<text x="538" y="560.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#2B1810">shop_id</text>
+<text x="780" y="560.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">uuid</text>
+<text x="500" y="579.8" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="9" font-weight="700" fill="#C67D38">FK</text>
+<text x="538" y="580.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#2B1810">verified_by</text>
+<text x="780" y="580.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">uuid</text>
+<rect x="491" y="586" width="298" height="20" fill="#FAF6F0"/>
+<text x="538" y="600.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#2B1810">amount</text>
+<text x="780" y="600.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">num</text>
+<text x="538" y="620.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#2B1810">reference</text>
+<text x="780" y="620.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">text</text>
+<rect x="491" y="626" width="298" height="20" fill="#FAF6F0"/>
+<text x="538" y="640.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#2B1810">receipt_url</text>
+<text x="780" y="640.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">text</text>
+<text x="538" y="660.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#2B1810">status</text>
+<text x="780" y="660.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">text</text>
+<rect x="491" y="666" width="298" height="20" fill="#FAF6F0"/>
+<text x="538" y="680.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#2B1810">rejected_reason</text>
+<text x="780" y="680.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">text</text>
+<text x="538" y="700.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#2B1810">submitted_at</text>
+<text x="780" y="700.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">ts</text>
+<rect x="491" y="706" width="298" height="20" fill="#FAF6F0"/>
+<text x="538" y="720.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#2B1810">verified_at</text>
+<text x="780" y="720.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">ts</text>
+<rect x="490" y="778" width="300" height="360" rx="4" fill="#FFFFFF" stroke="#2B1810" stroke-width="1.4"/>
+<path d="M 490 782 a 4 4 0 0 1 4 -4 h 292 a 4 4 0 0 1 4 4 v 28 h -300 z" fill="#2B1810"/>
+<line x1="490" y1="810" x2="790" y2="810" stroke="#2B1810" stroke-width="1.2"/>
+<text x="500" y="799" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#FFFFFF">shop_generations</text>
+<text x="500" y="823.8" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="9" font-weight="700" fill="#C67D38">PK</text>
+<text x="538" y="824.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#2B1810">task_id</text>
+<text x="780" y="824.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">text</text>
+<rect x="491" y="830" width="298" height="20" fill="#FAF6F0"/>
+<text x="500" y="843.8" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="9" font-weight="700" fill="#C67D38">FK</text>
+<text x="538" y="844.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#2B1810">shop_id</text>
+<text x="780" y="844.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">uuid</text>
+<text x="500" y="863.8" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="9" font-weight="700" fill="#C67D38">FK</text>
+<text x="538" y="864.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#2B1810">created_by</text>
+<text x="780" y="864.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">uuid</text>
+<rect x="491" y="870" width="298" height="20" fill="#FAF6F0"/>
+<text x="538" y="884.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#2B1810">outcome</text>
+<text x="780" y="884.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">text</text>
+<text x="538" y="904.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#2B1810">created_at</text>
+<text x="780" y="904.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">ts</text>
+<rect x="491" y="910" width="298" height="20" fill="#FAF6F0"/>
+<text x="538" y="924.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#2B1810">analyses_used</text>
+<text x="780" y="924.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">int</text>
+<text x="538" y="944.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#2B1810">mode</text>
+<text x="780" y="944.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">text</text>
+<rect x="491" y="950" width="298" height="20" fill="#FAF6F0"/>
+<text x="538" y="964.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#2B1810">category</text>
+<text x="780" y="964.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">text</text>
+<text x="538" y="984.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#2B1810">photo_count</text>
+<text x="780" y="984.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">int</text>
+<rect x="491" y="990" width="298" height="20" fill="#FAF6F0"/>
+<text x="538" y="1004.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#2B1810">textured</text>
+<text x="780" y="1004.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">bool</text>
+<text x="538" y="1024.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#2B1810">split_task_id</text>
+<text x="780" y="1024.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">text</text>
+<rect x="491" y="1030" width="298" height="20" fill="#FAF6F0"/>
+<text x="538" y="1044.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#2B1810">split_mode</text>
+<text x="780" y="1044.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">text</text>
+<text x="538" y="1064.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#2B1810">retexture_task_id</text>
+<text x="780" y="1064.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">text</text>
+<rect x="491" y="1070" width="298" height="20" fill="#FAF6F0"/>
+<text x="538" y="1084.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#2B1810">refunded</text>
+<text x="780" y="1084.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">bool</text>
+<text x="538" y="1104.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#2B1810">step_claimed_at</text>
+<text x="780" y="1104.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">ts</text>
+<rect x="491" y="1110" width="298" height="20" fill="#FAF6F0"/>
+<text x="538" y="1124.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#2B1810">cost</text>
+<text x="780" y="1124.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">int</text>
+<rect x="490" y="1182" width="300" height="280" rx="4" fill="#FFFFFF" stroke="#2B1810" stroke-width="1.4"/>
+<path d="M 490 1186 a 4 4 0 0 1 4 -4 h 292 a 4 4 0 0 1 4 4 v 28 h -300 z" fill="#2B1810"/>
+<line x1="490" y1="1214" x2="790" y2="1214" stroke="#2B1810" stroke-width="1.2"/>
+<text x="500" y="1203" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#FFFFFF">design_templates</text>
+<text x="500" y="1227.8" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="9" font-weight="700" fill="#C67D38">PK</text>
+<text x="538" y="1228.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#2B1810">id</text>
+<text x="780" y="1228.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">uuid</text>
+<rect x="491" y="1234" width="298" height="20" fill="#FAF6F0"/>
+<text x="500" y="1247.8" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="9" font-weight="700" fill="#C67D38">FK</text>
+<text x="538" y="1248.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#2B1810">shop_id</text>
+<text x="780" y="1248.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">uuid</text>
+<text x="500" y="1267.8" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="9" font-weight="700" fill="#C67D38">FK</text>
+<text x="538" y="1268.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#2B1810">created_by</text>
+<text x="780" y="1268.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">uuid</text>
+<rect x="491" y="1274" width="298" height="20" fill="#FAF6F0"/>
+<text x="538" y="1288.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#2B1810">title</text>
+<text x="780" y="1288.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">text</text>
+<text x="538" y="1308.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#2B1810">description</text>
+<text x="780" y="1308.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">text</text>
+<rect x="491" y="1314" width="298" height="20" fill="#FAF6F0"/>
+<text x="538" y="1328.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#2B1810">tag</text>
+<text x="780" y="1328.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">text</text>
+<text x="538" y="1348.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#2B1810">cad_state</text>
+<text x="780" y="1348.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">jsonb</text>
+<rect x="491" y="1354" width="298" height="20" fill="#FAF6F0"/>
+<text x="538" y="1368.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#2B1810">preview_url</text>
+<text x="780" y="1368.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">text</text>
+<text x="538" y="1388.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#2B1810">created_at</text>
+<text x="780" y="1388.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">ts</text>
+<rect x="491" y="1394" width="298" height="20" fill="#FAF6F0"/>
+<text x="538" y="1408.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#2B1810">allowed_materials</text>
+<text x="780" y="1408.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">text[]</text>
+<text x="538" y="1428.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#2B1810">model_path</text>
+<text x="780" y="1428.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">text</text>
+<rect x="491" y="1434" width="298" height="20" fill="#FAF6F0"/>
+<text x="538" y="1448.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#2B1810">is_hidden</text>
+<text x="780" y="1448.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">bool</text>
+<rect x="960" y="130" width="214" height="190" rx="4" fill="#FFFFFF" stroke="#2B1810" stroke-width="1.4" stroke-dasharray="5 3"/>
+<path d="M 960 134 a 4 4 0 0 1 4 -4 h 206 a 4 4 0 0 1 4 4 v 28 h -214 z" fill="#F3E7D8"/>
+<line x1="960" y1="162" x2="1174" y2="162" stroke="#2B1810" stroke-width="1.2"/>
+<text x="970" y="151" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#2B1810">auth.users</text>
+<text x="1164" y="151" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="600" fill="#6B5B4E" text-anchor="end">reference</text>
+<text x="970" y="175.8" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="9" font-weight="700" fill="#C67D38">PK</text>
+<text x="1008" y="176.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#2B1810">id</text>
+<text x="1164" y="176.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" text-anchor="end">uuid</text>
+<text x="970" y="200" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E" font-style="italic">Full table in Figure 4.12a</text>
+<line x1="40" y1="1504" x2="1174" y2="1504" stroke="#E7DDD0" stroke-width="1"/>
+<text x="40" y="1524" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" font-weight="700" fill="#2B1810" letter-spacing="0.6">LEGEND</text>
+<text x="112" y="1524" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="9" font-weight="700" fill="#C67D38">PK</text>
+<text x="130" y="1524" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#2B1810">primary key</text>
+<text x="212" y="1524" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="9" font-weight="700" fill="#C67D38">FK</text>
+<text x="230" y="1524" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#2B1810">foreign key</text>
+<path d="M 310 1520 L 344 1520" stroke="#5A3D2B" stroke-width="1.4"/><path d="M 323 1520 L 310 1513 M 323 1520 L 310 1527" stroke="#2B1810" stroke-width="1.5" fill="none"/><path d="M 328 1513 L 328 1527" stroke="#2B1810" stroke-width="1.6"/>
+<text x="352" y="1524" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#2B1810">many (child side)</text>
+<path d="M 468 1520 L 502 1520" stroke="#5A3D2B" stroke-width="1.4"/><path d="M 477 1513 L 477 1527 M 482 1513 L 482 1527" stroke="#2B1810" stroke-width="1.6"/>
+<text x="510" y="1524" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#2B1810">exactly one</text>
+<rect x="588" y="1512" width="30" height="16" rx="3" fill="#fff" stroke="#2B1810" stroke-width="1.2" stroke-dasharray="5 3"/>
+<text x="626" y="1524" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#2B1810">reference: table drawn in full in another part</text>
+<text x="40" y="1548" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#6B5B4E">Types: ts = timestamptz, num = numeric, int = integer. Each line runs from a foreign key column (crow’s foot) to the table it references (bar), always to that table’s primary key.</text>
+<text x="40" y="1567" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#6B5B4E">shop_subscriptions.shop_id is both its primary key and a foreign key to shops.id, so every shop has at most one subscription row.</text>
+<rect x="40" y="1576" width="223" height="22" rx="11" fill="none" stroke="#CDBFAF" stroke-width="1"/>
+<text x="51" y="1591" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#6B5B4E">1  Accounts and administration</text>
+<rect x="271" y="1576" width="296.7" height="22" rx="11" fill="#2B1810" stroke="#2B1810" stroke-width="1"/>
+<text x="282" y="1591" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="700" fill="#FFFFFF">2  Shops, subscriptions and AI generation</text>
+<rect x="575.7" y="1576" width="162.70000000000002" height="22" rx="11" fill="none" stroke="#CDBFAF" stroke-width="1"/>
+<text x="586.7" y="1591" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#6B5B4E">3  Orders and costing</text>
+<rect x="746.4000000000001" y="1576" width="182.8" height="22" rx="11" fill="none" stroke="#CDBFAF" stroke-width="1"/>
+<text x="757.4000000000001" y="1591" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#6B5B4E">4  Messaging and reviews</text>
+<text x="40" y="1619" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#6B5B4E">Generated from the live PostgreSQL schema (public schema, 16 tables) on 9 October 2026. auth.users is managed by Supabase Auth.</text>
+</svg>

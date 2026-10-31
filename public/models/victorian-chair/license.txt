@@ -1,0 +1,11 @@
+Model Information:
+* title:	Victorian chair
+* source:	https://sketchfab.com/3d-models/victorian-chair-6479a1900b614b59b26784c3a7922eb3
+* author:	BATRIC_18 (https://sketchfab.com/BATRIC_18)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Victorian chair" (https://sketchfab.com/3d-models/victorian-chair-6479a1900b614b59b26784c3a7922eb3) by BATRIC_18 (https://sketchfab.com/BATRIC_18) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

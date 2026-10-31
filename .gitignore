@@ -1,0 +1,95 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+.scratch*
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files (can opt-in for committing if needed)
+.env*.local
+.env
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# Texture and asset sources. Multi-hundred-MB Poly Haven downloads and the
+# BlenderKit add-on: the baked, web-sized output lives in public/textures.
+material/
+
+# Raw 3D model downloads -- archives and FBX/Max sources, tens to hundreds of
+# megabytes each. They live outside public/ so nothing unconverted is ever
+# served or deployed; only the web-sized model under public/models/<id>/ ships.
+model-sources/
+*.max
+*.FBX
+*.exe
+*.zip
+
+# Local browser-automation MCP server: points at this machine's own Chrome.
+.mcp.json
+
+# Local safety copies of stashed work. Durable across sessions, never committed.
+stash-backup/
+
+# Generated reports from scripts/architect-analysis.mts -- rerun on demand,
+# not meant to be diffed in git.
+scripts/architect-analysis-output/
+
+# Everything else under scripts/ is either a one-off run's byproduct or raw
+# test material: downloaded archives (.zip/.rar/.fbx), the extracted source
+# folders they unpack into (obj/blend/dae/3ds/textures -- someone else's
+# asset in whatever format it shipped), the converted .glb the pipeline was
+# actually tested against, and "test model/", the curated pass/fail fixture
+# set built from all of it. Same "unconverted, untested-for-shipping stays
+# local" rule as model-sources/ above -- an allowlist rather than one
+# pattern per download, since a new test model arrives more often than this
+# file gets updated. Only the reusable tooling is tracked.
+scripts/*
+!scripts/architect-analysis.mts
+!scripts/convert-fbx-to-gltf.mts
+!scripts/static-server.mjs
+!scripts/translate-fil.mts
+!scripts/verify-seller-application.mts
+!scripts/viewer-template.html
+
+# Renders from scripts/render-part.mts: working pictures, not sources.
+.renders/
+
+# AI coding-agent files: not part of the app or its deploys.
+/.claude/
+/.agents/
+/.impeccable/
+/.design-sync/
+/CLAUDE.md
+/AGENTS.md
+/skills-lock.json

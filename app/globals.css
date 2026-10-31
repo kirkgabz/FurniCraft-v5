@@ -1,0 +1,3728 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.9%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;
+    /* Solihiya, daylight rendition: warm alabaster canvas with crisp surfaces,
+       natural timber accents, and clean architectural contrast. */
+    --fc-bg: #F8F6F0;
+    --fc-panel: #FFFFFF;
+    --fc-accent: #C67D38;
+    --fc-accent-2: #96561D;
+    --fc-muted: #6E6254;
+    --fc-border: rgba(26, 19, 9, 0.10);
+    --fc-text: #1A1309;
+  }
+  .dark {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+    /* Solihiya, primary rendition: openwork read against shadow. The ground is
+       kamagong dark, the cane is the light, and the material is the only thing
+       lit -- which is how a caned panel actually reads, and how someone judging
+       timber on a phone in the evening needs it to. */
+    --fc-bg: #14100B;
+    --fc-panel: #1E1810;
+    --fc-accent: #E8D5A9;
+    --fc-accent-2: #C08A3E;
+    --fc-muted: #B9A588;
+    --fc-border: rgba(232, 213, 169, 0.14);
+    --fc-text: #F2E7D0;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  /*
+   * The page's ground is the house ground.
+   *
+   * This was `bg-background text-foreground`, which are shadcn's tokens, not
+   * FurniCraft's. They resolve to pure white and pure near-black neutral, while
+   * --fc-bg is warm linen (#f8f6f0) and its dark counterpart is a warm
+   * near-black (#120f0d). Every page that paints its own surface hid the
+   * difference; every page and every section that did not showed the browser a
+   * colour from a design system this product does not use. The landing page was
+   * the visible symptom, a linen hero sitting on a white band.
+   *
+   * Two token sets for the same job is the real problem; this points the one
+   * that paints the whole page at the one the product is designed in.
+   */
+  body {
+    background: var(--fc-bg);
+    color: var(--fc-text);
+  }
+
+  /* The surfaces the browser draws for us still belong to the design system.
+     Left at their defaults they announce that a page was assembled rather than
+     built -- a blue selection highlight and a grey scrollbar belong to no world. */
+  ::selection {
+    background: var(--fc-btn);
+    color: var(--fc-btn-fg);
+  }
+  :root {
+    color-scheme: light dark;
+    accent-color: var(--fc-btn);
+    caret-color: var(--fc-btn);
+    scrollbar-color: var(--fc-cane-soft) transparent;
+    scrollbar-width: thin;
+  }
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--fc-cane-soft);
+    border-radius: 999px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--fc-accent-2);
+    background-clip: content-box;
+  }
+  /* One focus ring for the whole product, in the material rather than the OS blue. */
+  :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+    outline: 2px solid var(--fc-btn);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+  /* Measurements, peso amounts and order ids line up in columns everywhere. */
+  :where(table, [data-numeric]) {
+    font-variant-numeric: tabular-nums;
+  }
+  a {
+    text-underline-offset: 0.18em;
+    text-decoration-thickness: from-font;
+  }
+
+  /* See components/solihiya/icons.tsx: holds every icon's stroke at the same
+     rendered weight whatever slot it sits in. */
+  .solihiya-icon :is(path, line, rect, circle, ellipse, polyline, polygon) {
+    vector-effect: non-scaling-stroke;
+  }
+}
+
+/* Landing page styles (moved from app/page.tsx to avoid styled-jsx in Server Component) */
+/* The landing nav, ledger world: token-driven rather than the vitrine's
+   literal dark values, because the hero underneath it is paper now, not a
+   lit dark stage, and both themes have to read as one block with it. */
+.landing-nav{display:flex;justify-content:space-between;align-items:center;padding:18px 32px;background:var(--fc-bg);border-bottom:1px solid var(--fc-border)}
+.landing-logo{font-family:var(--font-display),ui-sans-serif,system-ui,sans-serif;font-weight:700;font-size:1.15rem;letter-spacing:-0.02em;color:var(--fc-text);text-decoration:none}
+.landing-nav-links{display:flex;align-items:center;gap:22px}
+.landing-nav-link{position:relative;color:var(--fc-text);text-decoration:none;font-size:0.88rem;font-weight:600;line-height:1.2;display:inline-flex;align-items:center}
+.landing-nav-link:not(.cta)::after{content:"";position:absolute;left:0;right:100%;bottom:-4px;height:1px;background:var(--fc-text);transition:right 200ms cubic-bezier(0.23,1,0.32,1)}
+@media (hover:hover) and (pointer:fine){.landing-nav-link:not(.cta):hover::after{right:0}}
+.landing-nav-link.cta{padding:9px 18px;border-radius:3px;background:var(--fc-btn);color:var(--fc-btn-fg);transition:transform 160ms cubic-bezier(0.23,1,0.32,1),background-color 160ms ease}
+@media (hover:hover) and (pointer:fine){.landing-nav-link.cta:hover{background:var(--fc-btn-hover)}}
+.landing-nav-link.cta:active{transform:scale(0.97)}
+@media(max-width:900px){.landing-nav{padding:16px 20px}.landing-nav-links{gap:14px}}
+
+/* The Furniture Shop Ledger world: a faint drafting grid behind any surface that
+   wants to read as the shop's own drawing table, reusing the same
+   repeating-linear-gradient warp the furniture-type picker already draws
+   its cane ground with (see .ftp-page::after below), tuned down to ink on
+   paper instead of cane on shadow. */
+.ledger-grid{
+  background-image:
+    repeating-linear-gradient(to right, var(--fc-border) 0 1px, transparent 1px 28px),
+    repeating-linear-gradient(to bottom, var(--fc-border) 0 1px, transparent 1px 28px);
+}
+.ledger-diagram{
+  background-image:
+    repeating-linear-gradient(to right, color-mix(in srgb, var(--fc-accent-2) 16%, transparent) 0 1px, transparent 1px 20px),
+    repeating-linear-gradient(to bottom, color-mix(in srgb, var(--fc-accent-2) 16%, transparent) 0 1px, transparent 1px 20px);
+  background-color: var(--fc-panel);
+}
+
+/* Drafted in sequence on entry: outline, then each dimension line, then its
+   number, then the sign-off stamp -- the order a furniture shop actually drafts a
+   spec in, not everything arriving on screen at once. */
+.ledger-outline{stroke-dasharray:460;stroke-dashoffset:460;animation:ledger-draw 700ms cubic-bezier(0.77,0,0.175,1) 100ms both}
+.ledger-dim{stroke-dasharray:220;stroke-dashoffset:220}
+.ledger-dim-1{animation:ledger-draw-dim 360ms cubic-bezier(0.77,0,0.175,1) 640ms both}
+.ledger-dim-2{animation:ledger-draw-dim 360ms cubic-bezier(0.77,0,0.175,1) 740ms both}
+.ledger-dim,.ledger-dim-label{transition:filter 200ms ease}
+@media (hover:hover) and (pointer:fine){
+  .ledger-diagram:hover .ledger-dim,.ledger-diagram:hover .ledger-dim-label{filter:brightness(1.2) saturate(1.3)}
+}
+.ledger-dim-label{transform-box:fill-box}
+.ledger-dim-label-1{animation:ledger-label-in 280ms cubic-bezier(0.23,1,0.32,1) 1000ms both}
+.ledger-dim-label-2{animation:ledger-label-in 280ms cubic-bezier(0.23,1,0.32,1) 1080ms both}
+@keyframes ledger-draw{to{stroke-dashoffset:0}}
+@keyframes ledger-draw-dim{to{stroke-dashoffset:0}}
+@keyframes ledger-label-in{from{opacity:0;transform:translateX(-4px)}to{opacity:1;transform:translateX(0)}}
+.ledger-stamp{
+  position:absolute;top:-13px;right:10px;z-index:2;
+  font-family:var(--font-mono);font-size:9.5px;font-weight:700;letter-spacing:0.11em;text-transform:uppercase;
+  color:var(--fc-ink-accent);border:1.5px solid var(--fc-ink-accent);border-radius:999px;padding:6px 13px;
+  background:var(--fc-bg);
+  animation:ledger-stamp-in 280ms cubic-bezier(0.23,1,0.32,1) 1180ms both;
+}
+@keyframes ledger-stamp-in{from{opacity:0;transform:rotate(-7deg) scale(1.35)}to{opacity:0.9;transform:rotate(-7deg) scale(1)}}
+@media (prefers-reduced-motion: reduce){
+  .ledger-outline,.ledger-dim,.ledger-dim-label,.ledger-stamp{animation-duration:1ms !important;animation-delay:0ms !important}
+}
+
+/* Ledger auth surfaces: the shared shadcn Card/Input/Label primitives,
+   retoned from generic shadcn grayscale to the product's own walnut/brass/
+   linen tokens, with a corner-tick mark standing in for the vitrine's glass
+   panel. Radius, background and border are overridden per instance via
+   className (so they compose correctly with tailwind-merge); this covers
+   only what plain utility classes can't: the ticks, and inherited ink so a
+   plain, uncoloured link or paragraph inside the card reads in the ledger
+   tone instead of shadcn's default near-black. */
+.ledger-card{ position:relative; color:var(--fc-text); }
+.ledger-card::before,.ledger-card::after{ content:""; position:absolute; width:11px; height:11px; pointer-events:none; }
+.ledger-card::before{ top:9px; left:9px; border-top:2px solid var(--fc-ink-accent); border-left:2px solid var(--fc-ink-accent); }
+.ledger-card::after{ bottom:9px; right:9px; border-bottom:2px solid var(--fc-ink-accent); border-right:2px solid var(--fc-ink-accent); }
+.ledger-label{ display:block; font-family:var(--font-mono); font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fc-muted); margin-bottom:6px; }
+.ledger-input{ border-radius:3px; transition:border-color 160ms ease,background-color 160ms ease; }
+.ledger-input:focus-visible{ outline:2px solid var(--fc-accent-2); outline-offset:1px; }
+.ledger-link{ color:var(--fc-ink-accent); text-underline-offset:3px; }
+/* Touch. A thumb needs 44px wherever it has to land; a mouse does not, so the
+   pointer decides rather than the viewport width -- a tablet with a trackpad
+   keeps the dense layout and a phone held sideways does not lose the space.
+   Inline links take the room as an invisible hit area drawn around them
+   rather than as padding: padding on a link inside a sentence pushes the
+   lines of that sentence apart, and the hit area moves nothing. */
+@media (pointer:coarse){
+  .ledger-input{ min-height:44px; }
+  .ledger-link, .tap-target, .landing-logo{ position:relative; }
+  .ledger-link::after, .tap-target::after, .landing-logo::after{ content:""; position:absolute; inset:-12px -6px; }
+  .landing-nav-link{ min-height:44px; }
+  /* The shared buttons, set once here rather than at every call site. */
+  .btn, .menu-btn, .dash-hero-btn-primary, .dash-hero-btn-secondary, .ftp-cta, .ftp-pager-btn, .ftp-viewtoggle-btn{ min-height:44px; }
+  .ftp-pager-num{ min-height:44px; min-width:44px; }
+  /* iOS zooms the whole page into any field set below 16px the moment it is
+     tapped, and leaves it zoomed. :is() carries its most specific argument,
+     so this outranks a text-sm utility written on the field itself. */
+  :is(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="color"]), select, textarea){ font-size:16px; min-height:44px; }
+}
+
+/* Dashboard styles — polished */
+.dashboard-root {
+  min-height: 100vh;
+  background: var(--fc-bg);
+  color: var(--fc-text);
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 28px;
+  background: rgba(255, 255, 255, 0.8);
+  border-bottom: 1px solid var(--fc-border);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 10px 30px rgba(48, 33, 22, 0.04);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.dashboard-header-left { display: flex; align-items: center; gap: 14px; }
+.dashboard-header-right { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; justify-content: flex-end; }
+.dashboard-brand-block {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.dashboard-logo {
+  font-weight: 700;
+  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: -0.03em;
+  color: var(--fc-text);
+}
+.menu-btn {
+  background: rgba(255,255,255,0.7);
+  border: 1px solid rgba(122,105,96,0.12);
+  font-size: 1.15rem;
+  cursor: pointer;
+  padding: 9px 10px;
+  border-radius: 12px;
+  color: var(--fc-muted);
+  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 2px 8px rgba(48, 33, 22, 0.04);
+}
+.menu-btn:hover {
+  background: color-mix(in srgb, var(--fc-accent) 6%, transparent);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(48, 33, 22, 0.08);
+}
+.dashboard-user-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 7px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--fc-border);
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 2px 8px rgba(48, 33, 22, 0.03);
+}
+.dashboard-user-name {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--fc-text);
+}
+.dashboard-action-btn {
+  border: 1px solid var(--fc-border);
+  background: var(--fc-panel);
+  color: var(--fc-text);
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.dashboard-body {
+  display: flex;
+  gap: 0;
+  margin: 28px 0;
+  padding: 0 28px;
+  width: 100%;
+}
+.dashboard-body-sidebar-hidden {
+  gap: 0 !important;
+}
+.dashboard-sidebar {
+  display: none;
+}
+.dashboard-sidebar-collapsed {
+  display: none;
+}
+.dashboard-body-sidebar-hidden .dashboard-main {
+  width: 100% !important;
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+}
+
+/* Sidebar drawer overlay */
+.dashboard-sidebar-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.28);
+  z-index: 39;
+  animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.dashboard-sidebar-drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 260px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(247,242,236,0.98));
+  z-index: 40;
+  box-shadow: 18px 0 42px rgba(49, 32, 22, 0.12);
+  border-right: 1px solid color-mix(in srgb, var(--fc-accent) 8%, transparent);
+  transform: translateX(-100%);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 16px;
+}
+
+.dashboard-sidebar-drawer.open {
+  transform: translateX(0);
+}
+
+.sidebar-drawer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.sidebar-close-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.25rem;
+  color: #666;
+  padding: 4px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.sidebar-close-btn:hover {
+  background: rgba(0, 0, 0, 0.06);
+  color: #1a1a1a;
+}
+.sidebar-head {
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #5a5a5a;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.65rem;
+  line-height: 1.4;
+}
+.sidebar-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.sidebar-action-btn {
+  border: none;
+  background: color-mix(in srgb, var(--fc-accent) 8%, transparent);
+  color: var(--fc-text);
+  padding: 12px 16px;
+  border-radius: 8px;
+  text-align: left;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: background 0.15s ease, box-shadow 0.15s ease;
+  cursor: pointer;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+.sidebar-action-btn:hover {
+  background: color-mix(in srgb, var(--fc-accent) 12%, transparent);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+.sidebar-action-btn:focus-visible {
+  outline: 2px solid var(--fc-accent);
+  outline-offset: -2px;
+}
+.sidebar-theme-toggle {
+  margin-top: 4px;
+}
+.sidebar-nav { display: flex; flex-direction: column; gap: 4px; }
+.nav-item {
+  color: #5a5a5a;
+  text-decoration: none;
+  padding: 12px 14px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: none;
+  background: transparent;
+  transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+  position: relative;
+  overflow: visible;
+  font-weight: 500;
+  font-size: 0.95rem;
+  min-height: 44px;
+  cursor: pointer;
+}
+.nav-item:hover {
+  background: color-mix(in srgb, var(--fc-accent) 5%, transparent);
+  color: #2a2a2a;
+  transform: translateX(2px);
+}
+.nav-item:focus-visible {
+  outline: 2px solid var(--fc-accent);
+  outline-offset: -2px;
+}
+.nav-item.active {
+  background: linear-gradient(135deg, color-mix(in srgb, var(--fc-accent) 12%, transparent), color-mix(in srgb, var(--fc-accent) 6%, transparent));
+  /* The ink variant, not the accent: brass reads at 3.04:1 on the light ground
+     and this is the label of the page you are currently on. */
+  color: var(--fc-ink-accent);
+  font-weight: 700;
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--fc-accent) 8%, transparent);
+}
+.nav-item.active::before {
+  content: "";
+  position: absolute;
+  left: 8px;
+  top: 10px;
+  bottom: 10px;
+  width: 3px;
+  border-radius: 999px;
+  background: var(--fc-accent);
+}
+.dashboard-main {
+  flex: 1 1 auto;
+  width: 100%;
+  min-width: 0;
+  padding-bottom: 40px;
+}
+.page-title { margin-bottom: 28px; }
+.page-title h1 { 
+  font-size: 30px; 
+  font-weight: 750; 
+  margin-bottom: 8px; 
+  color: var(--fc-text);
+  letter-spacing: -0.04em;
+  line-height: 1.08;
+}
+.page-title p { 
+  color: var(--fc-muted); 
+  margin-bottom: 0;
+  font-size: 0.96rem;
+  line-height: 1.55;
+  font-weight: 500;
+}
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+.shop-dashboard-grid {
+  display: block !important;
+  width: 100% !important;
+  gap: 18px;
+}
+.shop-dashboard-grid .shop-customer-conversation-card {
+  width: 100% !important;
+  max-width: none !important;
+  min-height: 560px;
+}
+.card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(255,255,255,0.9));
+  border: 1px solid color-mix(in srgb, var(--fc-accent) 8%, transparent);
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: 0 10px 30px rgba(30, 20, 12, 0.04);
+  transition: box-shadow 0.18s ease, transform 0.18s ease, border-color 0.18s ease;
+}
+.card:hover { 
+  box-shadow: 0 16px 32px rgba(30, 20, 12, 0.08);
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--fc-accent) 14%, transparent);
+}
+.card-head h3 { 
+  margin: 0 0 12px 0; 
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--fc-text);
+  letter-spacing: -0.01em;
+}
+.card-head + * {
+  margin-top: 12px;
+}
+.card-content .muted { 
+  color: var(--fc-muted);
+}
+.card p {
+  margin: 0 0 12px 0;
+  line-height: 1.6;
+  font-size: 0.9375rem;
+}
+.card p:last-child {
+  margin-bottom: 0;
+}
+.muted-small { 
+  color: var(--fc-muted); 
+  font-size: 0.85rem;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.dark .dashboard-root { background: var(--fc-bg); }
+.dark .dashboard-header {
+  background: rgba(19,16,15,0.94);
+  border-color: var(--fc-border);
+}
+.dark .dashboard-sidebar {
+  background: transparent;
+  border: none;
+}
+.dark .dashboard-sidebar-drawer {
+  background: #1c1816;
+  color: #f5efe9;
+  border-left-color: rgba(244, 214, 180, 0.12);
+  box-shadow: -8px 0 30px rgba(0, 0, 0, 0.4);
+}
+.dark .sidebar-drawer-header {
+  border-bottom-color: rgba(244, 214, 180, 0.12);
+}
+.dark .sidebar-close-btn {
+  color: #d7c4b7;
+}
+.dark .sidebar-close-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #f5efe9;
+}
+.dark .card,
+.dark .dashboard-user-pill,
+.dark .dashboard-user-name,
+.dark .dashboard-logo,
+.dark .sidebar-head,
+.dark .page-title h1,
+.dark .card h3,
+.dark .dashboard-header {
+  color: var(--fc-text);
+}
+.dark .page-title p,
+.dark .card p,
+.dark .muted-small,
+.dark .menu-btn {
+  color: var(--fc-muted);
+}
+.dark .menu-btn:hover { background: rgba(255,255,255,0.04); }
+
+@media (max-width: 1100px) {
+  .dashboard-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 768px) {
+  .dashboard-header { padding: 14px 16px; }
+  .dashboard-brand-block { gap: 8px; }
+  .page-title h1 { font-size: 24px; }
+  .dashboard-body { flex-direction: column; padding: 0 16px; }
+  .dashboard-grid { grid-template-columns: 1fr; gap: 20px; }
+  .card { padding: 20px; border-radius: 16px; }
+}
+@media (max-width: 480px) {
+  .dashboard-header { padding: 12px 14px; }
+  .dashboard-header-left, .dashboard-header-right { gap: 8px; }
+  .dashboard-body { padding: 0 12px; }
+  .card { padding: 18px 16px; }
+  .dashboard-grid { gap: 16px; }
+  .dashboard-user-pill { padding-inline: 10px; }
+  .page-title { margin-bottom: 20px; }
+  .page-title h1 { font-size: 22px; }
+}
+
+/* --- Solihiya world tokens --- */
+:root {
+  --fc-ink-accent: #96561D;
+  /* Deep Philippine Walnut is the primary action color; warm amber is the interactive accent */
+  --fc-btn: #2B1810;
+  --fc-btn-hover: #190E09;
+  --fc-danger: #A83A2A;
+  --fc-danger-soft: #C2410C;
+  --fc-bg: #F8F6F0;
+  --fc-panel: #FFFFFF;
+  --fc-accent: #C67D38;
+  --fc-accent-2: #96561D;
+  --fc-muted: #6E6254;
+  --fc-border: rgba(26, 19, 9, 0.10);
+  /* The cane mesh itself, as a strand color the SVG weave reads. */
+  --fc-cane: #C67D38;
+  --fc-cane-soft: rgba(198, 125, 56, 0.20);
+  --fc-verify: #315278;
+  --fc-star: #C27C1E;
+  --fc-online: #226E4A;
+  /* Paired with --fc-btn. The primary action flipped to a light cane fill in
+     dark mode, and the hardcoded white it used to carry rendered at 1.45:1
+     there -- unreadable. Foreground now moves with the fill. */
+  --fc-btn-fg: #FFFFFF;
+  --fc-danger-fg: #FFFFFF;
+  --fc-scrim: rgba(20, 12, 6, 0.65);
+}
+
+.dark {
+  --fc-ink-accent: #E8D5A9;
+  --fc-btn: #E8D5A9;
+  --fc-btn-hover: #F4EFE6;
+  --fc-danger: #E05D4A;
+  --fc-danger-soft: #A83A2A;
+  --fc-bg: #120F0D;
+  --fc-panel: #1A1512;
+  --fc-accent: #E8D5A9;
+  --fc-accent-2: #D4954A;
+  --fc-muted: #A89B8C;
+  --fc-border: rgba(232, 213, 169, 0.12);
+  --fc-text: #F4EFE6;
+  --fc-verify: #8FB0E0;
+  --fc-star: #F0C05A;
+  --fc-online: #3FBF8F;
+  --fc-cane: #E8D5A9;
+  --fc-cane-soft: rgba(232, 213, 169, 0.22);
+  --fc-btn-fg: #120F0D;
+  --fc-danger-fg: #120F0D;
+}
+
+.dashboard-root { background: var(--fc-bg); font-family: var(--font-sans), system-ui, -apple-system, "Segoe UI", sans-serif; }
+.dashboard-header { padding: 18px 28px; background: rgba(255,255,255,0.88); backdrop-filter: blur(8px); border-bottom: 1px solid var(--fc-border); }
+.dashboard-logo { font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif; font-size: 1.25rem; color: var(--fc-text); }
+.dashboard-body { width: 100%; margin: 18px 0; display: flex; gap: 24px; padding: 0 28px; }
+.dashboard-sidebar { width: 260px; padding: 20px 16px; border-radius: 0; background: transparent; border: none; box-shadow: none; }
+.sidebar-head { font-weight: 600; margin-bottom: 16px; color: #5a5a5a; font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; }
+.sidebar-nav { display: flex; flex-direction: column; gap: 6px; }
+.nav-item { display: flex; align-items: center; gap: 12px; color: #5a5a5a; text-decoration: none; padding: 12px 14px; border-radius: 8px; font-weight: 500; transition: background 0.15s ease, color 0.15s ease; border: none; background: transparent; min-height: 44px; font-size: 0.95rem; }
+.nav-item i { width: 18px; text-align: center; font-size: 1rem; }
+.nav-item:hover { background: color-mix(in srgb, var(--fc-accent) 5%, transparent); color: #2a2a2a; }
+.nav-item:focus-visible { outline: 2px solid var(--fc-accent); outline-offset: -2px; }
+.nav-item.active { background: color-mix(in srgb, var(--fc-accent) 10%, transparent); color: var(--fc-ink-accent); font-weight: 600; }
+.dashboard-main { flex: 1; }
+.page-title { margin-bottom: 28px; }
+.page-title h1 { font-size: 28px; margin-bottom: 8px; color: var(--fc-text); font-weight: 700; letter-spacing: -0.02em; }
+.page-title p { color: var(--fc-muted); font-size: 0.95rem; line-height: 1.5; font-weight: 400; }
+.dashboard-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.card { background: var(--fc-panel); border-radius: 12px; padding: 24px; border: none; box-shadow: 0 1px 3px rgba(0,0,0,0.06); transition: box-shadow 0.15s ease, transform 0.15s ease; }
+.card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08); transform: translateY(-2px); }
+.card h3 { margin: 0 0 12px 0; font-size: 1.125rem; color: var(--fc-text); font-weight: 600; }
+.card p { color: var(--fc-muted); margin: 0; }
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.customer-conversation-layout {
+  display: grid;
+  grid-template-columns: minmax(150px, 200px) minmax(0, 1fr);
+  gap: 12px;
+  align-items: stretch;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.customer-conversation-layout .rooms-panel {
+  min-width: 0;
+  max-width: 100%;
+  min-height: 340px;
+  overflow: hidden;
+}
+
+.customer-conversation-layout .selected-customer-panel,
+.customer-conversation-layout .selected-room-panel {
+  min-width: 0;
+  width: 100%;
+  max-width: 100%;
+  min-height: 340px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.customer-conversation-layout .selected-customer-panel .conversation-messages,
+.customer-conversation-layout .selected-room-panel .conversation-messages {
+  min-width: 0;
+  max-width: 100%;
+  min-height: 220px;
+  max-height: 320px;
+  flex: 1 1 auto;
+  overflow-y: auto;
+  padding-right: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.customer-conversation-layout .selected-customer-panel .conversation-messages > div,
+.customer-conversation-layout .selected-room-panel .conversation-messages > div {
+  width: 100%;
+}
+
+.customer-conversation-layout .selected-customer-panel .conversation-messages .max-w-\[88\%\],
+.customer-conversation-layout .selected-room-panel .conversation-messages .max-w-\[88\%\] {
+  max-width: 100% !important;
+}
+
+.customer-conversation-layout .selected-customer-panel .chat-composer,
+.customer-conversation-layout .selected-room-panel .chat-composer {
+  min-width: 0;
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 12px;
+}
+
+.customer-conversation-layout .selected-customer-panel .chat-composer input,
+.customer-conversation-layout .selected-room-panel .chat-composer input {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.customer-conversation-layout .selected-customer-panel .chat-composer button,
+.customer-conversation-layout .selected-room-panel .chat-composer button {
+  flex: 0 0 auto;
+}
+
+@media (max-width: 900px) {
+  .customer-conversation-layout {
+    display: flex;
+    flex-direction: column;
+    overflow: visible;
+  }
+
+  .customer-conversation-layout .rooms-panel,
+  .customer-conversation-layout .selected-customer-panel,
+  .customer-conversation-layout .selected-room-panel {
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+  }
+}
+
+.dark .dashboard-header { background: rgba(19,16,15,0.94); }
+.dark .card,
+.dark .dashboard-user,
+.dark .card:hover { box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); }
+.dark .dashboard-root { background: var(--fc-bg); }
+.dark .nav-item { color: #d7c4b7; }
+.dark .nav-item:hover { background: rgba(255, 255, 255, 0.08); color: #f5efe9; }
+.dark .nav-item.active { background: rgba(210, 152, 103, 0.15); color: #d49867; }
+
+@media (max-width: 1100px) { .dashboard-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 700px) { .dashboard-body{ flex-direction: column; } .dashboard-grid{ grid-template-columns: 1fr; } }
+
+.dashboard-body-sidebar-hidden {
+  gap: 0 !important;
+}
+.dashboard-sidebar-collapsed {
+  width: 0 !important;
+  min-width: 0 !important;
+  max-width: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  overflow: hidden !important;
+  opacity: 0 !important;
+  transform: translateX(-20px) !important;
+  pointer-events: none !important;
+  display: none !important;
+}
+.dashboard-body-sidebar-hidden .dashboard-main {
+  width: 100% !important;
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+}
+
+/* --- Dashboard hero: Quiet Ledger --------------------------------------
+   Was a dark walnut-gradient card, its own committed-dark vitrine dropped
+   into an otherwise light, token-driven dashboard. Retired in favour of the
+   same paper-and-hairline language the landing page and auth flow now use:
+   no fill, no shadow, hierarchy from a single rule underneath it. */
+.dash-hero {
+  padding: 0 0 24px;
+  border-bottom: 1px solid var(--fc-border);
+  color: var(--fc-text);
+}
+.dash-hero h1 {
+  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+  font-size: clamp(1.4rem, 2.6vw, 1.9rem);
+  line-height: 1.15;
+  margin: 0 0 8px;
+  letter-spacing: -0.02em;
+  color: var(--fc-text);
+}
+.dash-hero p {
+  max-width: 58ch;
+  color: var(--fc-muted);
+  font-size: 0.94rem;
+  line-height: 1.6;
+  margin: 0;
+}
+.dash-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
+}
+.dash-hero-btn-primary {
+  background: var(--fc-btn);
+  color: var(--fc-btn-fg);
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.88rem;
+  transition: transform 150ms cubic-bezier(0.23, 1, 0.32, 1), background-color 150ms ease;
+  border: none;
+  cursor: pointer;
+}
+.dash-hero-btn-primary:hover {
+  background: var(--fc-btn-hover);
+}
+.dash-hero-btn-primary:active {
+  transform: scale(0.97);
+}
+.dash-hero-btn-secondary {
+  background: transparent;
+  border: 1px solid var(--fc-border);
+  color: var(--fc-text);
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.88rem;
+  transition: background-color 150ms ease, transform 150ms cubic-bezier(0.23, 1, 0.32, 1), border-color 150ms ease;
+  cursor: pointer;
+}
+.dash-hero-btn-secondary:hover {
+  background: color-mix(in srgb, var(--fc-accent) 8%, transparent);
+  border-color: color-mix(in srgb, var(--fc-accent) 40%, var(--fc-border));
+}
+.dash-hero-btn-secondary:active {
+  transform: scale(0.97);
+}
+
+/* Used on Overview and My templates: strips .card's fill, border and shadow
+   down to a single hairline underneath, scoped to this modifier rather than
+   changing .card itself, which the rest of the dashboard (orders' own flat
+   treatment aside, settings, shop dashboard) still uses as a filled,
+   elevated surface. Named generically since more than one screen now shares
+   the same flat treatment -- was .overview-quiet-block. */
+.quiet-block {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  padding: 0 0 24px !important;
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--fc-border) !important;
+}
+.quiet-block:last-child {
+  border-bottom: none !important;
+  padding-bottom: 0 !important;
+  margin-bottom: 0;
+}
+.quiet-block:hover {
+  box-shadow: none !important;
+  transform: none !important;
+}
+.section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--fc-ink-accent);
+}
+.sidebar-divider {
+  margin: 14px 6px 6px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #9a8b81;
+}
+.dark .sidebar-divider {
+  border-top-color: rgba(244, 214, 180, 0.12);
+  color: #a4907f;
+}
+.status-banner {
+  border-radius: 24px;
+  padding: 20px 22px;
+  border: 1px solid var(--fc-border);
+  background: var(--fc-panel);
+  box-shadow: 0 10px 30px rgba(30, 20, 12, 0.04);
+}
+.status-banner.pending { border-color: rgba(231, 156, 76, 0.4); background: rgba(231, 156, 76, 0.08); }
+.status-banner.none { border-color: var(--fc-border); background: rgba(122, 105, 96, 0.06); }
+.shop-avatar-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--fc-accent) 14%, transparent);
+  color: var(--fc-ink-accent);
+  font-weight: 800;
+  font-size: 0.95rem;
+  flex-shrink: 0;
+}
+
+/* An outline mark rather than a filled pill -- a shop's tags, its "your
+   shop" status and its rating read as stamped facts, not as buttons. */
+.stamp-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  border: 1.5px solid var(--fc-ink-accent);
+  color: var(--fc-ink-accent);
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: transparent;
+  /* Most tags and badges are a word or two and stay on one line, but a
+     shop's specialty field is free text -- a shop that wrote a sentence
+     there instead of "Rattan, Wood" must not blow the pill past the
+     viewport on mobile. It wraps like the sentence it might actually be. */
+  max-width: 100%;
+}
+.stamp-chip-muted {
+  border-color: var(--fc-border);
+  color: var(--fc-muted);
+}
+
+
+/* ------------------------------------------------------------------ buttons
+   Buttons used to be assembled inline at each call site, which produced 31
+   primary buttons in six different radii (full, 2xl, lg), seven paddings
+   (px-2 through px-5, py-0.5 through py-3), three text sizes and three font
+   weights -- all for the same action. These are the shared shapes; call sites
+   add only layout utilities such as w-full or flex-1. */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+}
+.btn:disabled,
+.btn[aria-disabled="true"] { cursor: not-allowed; opacity: 0.55; }
+.btn:focus-visible { outline: 2px solid var(--fc-accent); outline-offset: 2px; }
+
+.btn-primary { background: var(--fc-btn); color: var(--fc-btn-fg); }
+.btn-primary:hover:not(:disabled) { background: var(--fc-btn-hover); }
+/* Already done, nothing new to send: pressed in and dark rather than faded,
+   so it reads as "sent" instead of "unavailable". */
+.btn.btn-pressed:disabled {
+  opacity: 1;
+  filter: brightness(0.8);
+  color: color-mix(in srgb, var(--fc-btn-fg) 55%, transparent);
+  box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.55), inset 0 0 0 1px rgba(0, 0, 0, 0.35);
+  transform: translateY(1px);
+}
+
+.btn-secondary {
+  background: var(--fc-panel);
+  color: var(--fc-text);
+  border-color: var(--fc-border);
+}
+.btn-secondary:hover:not(:disabled) { background: color-mix(in srgb, var(--fc-accent) 8%, transparent); }
+
+.btn-ghost { background: transparent; color: var(--fc-text); }
+.btn-ghost:hover:not(:disabled) { background: color-mix(in srgb, var(--fc-accent) 8%, transparent); }
+
+.btn-danger-ghost {
+  background: transparent;
+  color: var(--fc-danger-soft);
+  border-color: var(--fc-border);
+}
+.btn-danger-ghost:hover:not(:disabled) { background: rgba(192, 57, 43, 0.1); }
+
+.btn-sm { padding: 7px 14px; font-size: 0.78rem; }
+.btn-lg { padding: 13px 26px; font-size: 1rem; font-weight: 700; }
+.btn-block { width: 100%; }
+
+/* Display face, for headings that should match the wordmark. */
+.font-display { font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif; letter-spacing: -0.02em; }
+
+/* ------------------------------------------------- furniture type carousel
+   Treated as an instrument panel rather than a page: a dark, depth-lit stage
+   with the piece presented on a glass slab. Every colour still comes from the
+   theme tokens, so the same rules read correctly in light mode -- the effect is
+   carried by depth, hairlines and motion rather than by a fixed palette. */
+/* Content is centred in the viewport rather than stacked against the top.
+   Spotlight shows one card, so top-aligning it left most of a tall screen
+   empty below -- the page looked unfinished rather than spacious. */
+.ftp-page {
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  /* `safe` is the whole point of these two lines, and the plain `center`
+     above it is the fallback for browsers that drop the pair.
+
+     A centred flex column whose content is taller than the box overflows
+     equally at BOTH ends, and the overflow at the top end cannot be scrolled
+     to -- it sits before the scroll origin. The commission path is the first
+     thing in this column, so on any window too short for the content it was
+     the first thing to disappear, taking the Back button with it. `safe`
+     falls back to flex-start exactly when that would happen. */
+  justify-content: center;
+  justify-content: safe center;
+  /* Was `hidden`, which clipped vertically as well and so finished the job:
+     even where the path had not been scrolled past, it was cut off. `clip` on
+     one axis still contains the drifting background pools (::before is inset
+     -25%) without creating a scroll container or trapping the other axis. */
+  overflow: hidden;
+  overflow-x: clip;
+  overflow-y: visible;
+  background: var(--fc-bg);
+  color: var(--fc-text);
+  /* Scales with the viewport rather than reserving a fixed 24px gutter and a
+     44px band of nothing above the breadcrumb. A phone gives up almost none
+     of its width; a desktop keeps a real margin without the page feeling
+     like a column posted in the middle of the screen. */
+  padding: clamp(18px, 2.4vw, 36px) clamp(14px, 2.6vw, 44px) clamp(32px, 4vw, 56px);
+}
+/* The grid is tall enough to fill a screen on its own; centring it would
+   only push the heading off the top on a short one. */
+.ftp-page:has(.ftp-grid) { justify-content: flex-start; }
+
+/* Two slow-drifting pools of accent light, both warm -- a second pool in an
+   off-palette purple used to sit here, the one place in the app with a hue
+   nothing else uses. */
+.ftp-page::before {
+  content: "";
+  position: absolute;
+  inset: -25%;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    radial-gradient(38% 42% at 22% 18%, color-mix(in srgb, var(--fc-accent) 24%, transparent), transparent 70%),
+    radial-gradient(34% 38% at 82% 72%, color-mix(in srgb, var(--fc-accent-2) 20%, transparent), transparent 72%);
+  animation: ftp-drift 22s ease-in-out infinite alternate;
+}
+
+/* The caned ground, faded out toward the edges.
+   This was a two-axis hairline grid, which is a generated-UI tell and, worse
+   here, a different material from the rest of the product. Same four passes as
+   the SVG weave -- warp, weft, and two diagonals opening the octagons -- so the
+   picker sits on the same panel as everything else. */
+.ftp-page::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    repeating-linear-gradient(to right, var(--fc-cane-soft) 0 1px, transparent 1px 30px),
+    repeating-linear-gradient(to bottom, var(--fc-cane-soft) 0 1px, transparent 1px 30px),
+    repeating-linear-gradient(45deg, var(--fc-cane-soft) 0 1px, transparent 1px 42px),
+    repeating-linear-gradient(-45deg, var(--fc-cane-soft) 0 1px, transparent 1px 42px);
+  opacity: 0.55;
+  mask-image: radial-gradient(80% 60% at 40% 35%, #000 30%, transparent 78%);
+  -webkit-mask-image: radial-gradient(80% 60% at 40% 35%, #000 30%, transparent 78%);
+}
+
+/* 880px was a reading measure, and this page is not prose: it is a set of
+   pictures of furniture, and the breadcrumb across the top of it. At 880 a
+   1080p screen spent a third of its width on empty ground either side while
+   the grid below ran two cards wide. The lede keeps its own narrow measure
+   (see .ftp-lede) so the sentence stays readable at any width. */
+.ftp-inner { position: relative; width: 100%; max-width: min(1440px, 100%); margin: 0 auto; }
+
+.ftp-title {
+  font-size: clamp(1.7rem, 2.8vw, 2.6rem);
+  margin: 10px 0 6px;
+  font-weight: 700;
+}
+.ftp-lede { color: var(--fc-muted); max-width: 56ch; margin: 0 0 26px; line-height: 1.55; }
+
+/* The heading and the view control share a line on a wide screen and stack
+   on a narrow one, so the control never crowds the sentence. */
+.ftp-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+}
+.ftp-head-text { min-width: 0; flex: 1 1 380px; }
+.ftp-head .ftp-lede { margin-bottom: 0; }
+
+/* Segmented control. The thumb is one element that slides, so switching
+   reads as a single control moving rather than two buttons trading state. */
+.ftp-viewtoggle {
+  position: relative;
+  display: inline-flex;
+  flex: 0 0 auto;
+  padding: 4px;
+  border: 1px solid var(--fc-border);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--fc-accent) 7%, transparent);
+  box-shadow: inset 0 1px 3px rgba(20, 12, 6, 0.08);
+  margin-top: 6px;
+}
+.ftp-viewtoggle-thumb {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  left: 4px;
+  width: calc(50% - 4px);
+  border-radius: 999px;
+  background: var(--fc-panel);
+  box-shadow: 0 4px 12px rgba(20, 12, 6, 0.16);
+  transition: transform 0.28s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.ftp-viewtoggle-thumb[data-view="spotlight"] { transform: translateX(100%); }
+.ftp-viewtoggle-btn {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 999px;
+  background: none;
+  color: var(--fc-muted);
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 700;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+.ftp-viewtoggle-btn.is-active { color: var(--fc-ink-accent); }
+.ftp-viewtoggle-btn:not(.is-active):hover { color: var(--fc-text); }
+.ftp-viewtoggle-btn:focus-visible { outline: 2px solid var(--fc-accent); outline-offset: 2px; }
+
+/* Spotlight centres its heading over the card.
+ *
+ * In the grid the heading sits left with the view control opposite it, which
+ * is the right shape for a block of cards that starts at the same left edge.
+ * Spotlight has no such edge -- one card, centred in a capped width -- so a
+ * left-aligned sentence over it reads as though the layout slipped. Keyed off
+ * the carousel being present, which only spotlight renders. */
+.ftp-page:has(.ftp-carousel) .ftp-head {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.ftp-page:has(.ftp-carousel) .ftp-head-text { flex: 0 1 auto; }
+.ftp-page:has(.ftp-carousel) .ftp-lede { margin-inline: auto; }
+.ftp-page:has(.ftp-carousel) .ftp-viewtoggle { margin-top: 2px; }
+
+/* Spotlight: one piece at a time, its neighbours set back behind it. */
+.ftp-carousel {
+  position: relative;
+  overflow: hidden;
+  border-radius: 26px;
+  outline: none;
+  touch-action: pan-y;
+  perspective: 1200px;
+  margin-top: clamp(18px, 2.2vw, 26px);
+  /* Capped, and centred in the wider column. Spotlight shows ONE card lying
+     down; let it have the full 1440 and it becomes a letterbox with a small
+     chair at one end and a paragraph stranded at the other. */
+  max-width: 1120px;
+  margin-inline: auto;
+}
+.ftp-carousel:focus-visible { box-shadow: 0 0 0 3px color-mix(in srgb, var(--fc-accent) 40%, transparent); }
+.ftp-track { display: flex; transition: transform 0.55s cubic-bezier(0.22, 0.61, 0.36, 1); will-change: transform; }
+.ftp-slide { flex: 0 0 100%; min-width: 100%; padding: 4px 60px; display: flex; }
+
+/* Inside a slide the card lies down: one wide slab reads better with room
+   to spare than a tall column floating in it. */
+.ftp-slide .ftp-card {
+  flex-direction: row;
+  align-items: center;
+  gap: 24px;
+  min-height: 216px;
+  padding: 28px 30px;
+  transition: transform 0.55s cubic-bezier(0.22, 0.61, 0.36, 1), opacity 0.45s ease;
+}
+.ftp-slide .ftp-shot-frame { flex: 0 0 auto; align-self: auto; width: 260px; min-height: 230px; }
+.ftp-slide .ftp-icon { width: 104px; height: 104px; border-radius: 26px; font-size: 2.9rem; }
+.ftp-slide .ftp-shot { height: 230px; }
+.ftp-slide .ftp-card-title { font-size: 1.55rem; }
+.ftp-slide .ftp-blurb { max-width: 46ch; font-size: 1rem; line-height: 1.55; }
+.ftp-slide .ftp-cta { margin-top: 0; }
+.ftp-slide[aria-hidden="true"] .ftp-card { transform: scale(0.93); opacity: 0.45; }
+/* The cards either side must not answer the pointer; only the one in front. */
+.ftp-slide[aria-hidden="true"] .ftp-card:hover { transform: scale(0.93); box-shadow: 0 20px 50px rgba(20, 12, 6, 0.18); }
+
+/* Every piece on screen at once: the page's whole job is to say what can be
+   built, and one card at a time made that answer conditional on operating it. */
+.ftp-grid {
+  display: grid;
+  /* Three across at most, deliberately, even though the column is now wide
+     enough for four. Three columns and nine to a page make one square block
+     of cards, which is a shape you can take in at a glance and compare across;
+     four across with a ragged last row is a list you have to scan. The pager
+     under it does the rest. */
+  grid-template-columns: 1fr;
+  gap: clamp(14px, 1.3vw, 20px);
+  margin: clamp(18px, 2.2vw, 28px) 0 0;
+  padding: 0;
+  list-style: none;
+}
+@media (min-width: 680px) {
+  .ftp-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1040px) {
+  .ftp-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.ftp-grid-item { display: flex; min-width: 0; }
+
+/* ---- Furniture kinds: the step before the pieces.
+   Four across by two down on a wide screen -- all eight kinds in one block you
+   take in at a glance -- and two across on a phone. Each tile is the kind's own
+   render, not a pictogram, except where no piece exists yet. */
+.ftp-cat-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(10px, 1.3vw, 18px);
+  margin: clamp(18px, 2.2vw, 28px) 0 0;
+  padding: 0;
+  list-style: none;
+}
+@media (min-width: 680px) {
+  .ftp-cat-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+.ftp-cat {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  width: 100%;
+  min-width: 0;
+  padding: 12px 12px 14px;
+  border: 1px solid var(--fc-border);
+  border-radius: 18px;
+  background: var(--fc-panel);
+  color: var(--fc-text);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1), border-color 160ms ease, box-shadow 160ms ease;
+}
+.ftp-cat:active:not([aria-disabled="true"]) { transform: scale(0.98); }
+.ftp-cat:focus-visible { outline: 2px solid var(--fc-accent); outline-offset: 2px; }
+.ftp-cat[aria-disabled="true"] { cursor: default; }
+@media (hover: hover) and (pointer: fine) {
+  .ftp-cat:not([aria-disabled="true"]):hover {
+    border-color: color-mix(in srgb, var(--fc-accent) 55%, transparent);
+    box-shadow: 0 14px 34px rgba(20, 12, 6, 0.14);
+  }
+  .ftp-cat:not([aria-disabled="true"]):hover .ftp-cat-shot img { transform: scale(1.05); }
+}
+.ftp-cat-shot {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  margin-bottom: 8px;
+  overflow: hidden;
+  border-radius: 13px;
+  background: color-mix(in srgb, var(--fc-accent) 5%, transparent);
+}
+.ftp-cat[aria-disabled="true"] .ftp-cat-shot { border: 1px dashed var(--fc-border); background: transparent; }
+.ftp-cat-shot img {
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
+  transition: transform 220ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+.ftp-cat-icon { width: 36%; height: 36%; color: var(--fc-muted); }
+.ftp-cat-name { font-size: 1.02rem; font-weight: 700; line-height: 1.2; }
+.ftp-cat[aria-disabled="true"] .ftp-cat-name { color: var(--fc-muted); }
+.ftp-cat-count { font-size: 0.8rem; color: var(--fc-muted); }
+/* The crumb back to every kind is the shared back button now; see
+   components/ui/back-button-style.ts. */
+@media (prefers-reduced-motion: reduce) {
+  .ftp-cat, .ftp-cat-shot img { transition: none; }
+}
+
+/* Glass slab: a translucent surface with a gradient hairline for an edge. */
+.ftp-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  /* Tightened so six cards read as one block rather than six posters. Every
+     size here is a grid-view size; spotlight overrides the ones it needs
+     further down, where a single card has the room to be large. */
+  gap: 12px;
+  flex: 1;
+  padding: 18px 18px 20px;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  border: 1px solid transparent;
+  border-radius: 18px;
+  background-image:
+    linear-gradient(var(--fc-panel), var(--fc-panel)),
+    linear-gradient(135deg, color-mix(in srgb, var(--fc-accent) 65%, transparent), rgba(255, 255, 255, 0.12) 42%, rgba(120, 92, 190, 0.4));
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  box-shadow: 0 20px 50px rgba(20, 12, 6, 0.18);
+  backdrop-filter: blur(8px);
+  overflow: hidden;
+}
+/* A sheen across the top edge, so the slab catches the stage light. */
+.ftp-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+}
+.ftp-card.is-unavailable { opacity: 0.55; box-shadow: none; }
+/* Only the ones you can actually open respond to the pointer. */
+.ftp-card:not(.is-unavailable):hover {
+  transform: translateY(-3px);
+  box-shadow: 0 26px 60px rgba(20, 12, 6, 0.24);
+}
+
+/* The frame a render (or, for a piece with none yet, the fallback icon)
+   sits in -- a bounded slot rather than art floating loose on the card, so a
+   row of cards reads as a set of equal-sized tiles even before every tile has
+   a picture. Dashed for "nothing to show yet"; solid once there is. */
+.ftp-shot-frame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
+  width: 100%;
+  min-height: 132px;
+  padding: 12px;
+  border-radius: 13px;
+  border: 1px dashed var(--fc-border);
+  background: color-mix(in srgb, var(--fc-accent) 5%, transparent);
+}
+.ftp-card:not(.is-unavailable) .ftp-shot-frame {
+  border-style: solid;
+  background: color-mix(in srgb, var(--fc-accent) 4%, transparent);
+}
+
+/* A render of the piece itself. Given real room, because it is the only
+   thing on the card that answers "what does it look like?" -- the blurb
+   describes, the picture shows. */
+.ftp-shot {
+  flex: 0 0 auto;
+  height: 112px;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  object-position: center;
+  filter: drop-shadow(0 12px 18px rgba(20, 12, 6, 0.22));
+  transition: transform 0.35s cubic-bezier(0.22, 0.61, 0.36, 1);
+  animation: ftp-pop 0.5s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+.ftp-card:not(.is-unavailable):hover .ftp-shot { transform: scale(1.06) rotate(-1.5deg); }
+
+.ftp-icon {
+  position: relative;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 62px;
+  height: 62px;
+  border-radius: 18px;
+  border: 1px solid var(--fc-border);
+  background:
+    radial-gradient(circle at 32% 26%, color-mix(in srgb, var(--fc-accent) 28%, transparent), transparent 62%),
+    color-mix(in srgb, var(--fc-accent) 7%, transparent);
+  font-size: 1.7rem;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14);
+  animation: ftp-pop 0.5s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
+.ftp-card-body { display: flex; flex-direction: column; min-width: 0; flex: 1; }
+.ftp-card-title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 6px;
+  font-size: 1.12rem;
+  font-weight: 700;
+}
+.ftp-badge {
+  padding: 3px 10px;
+  border: 1px solid var(--fc-border);
+  border-radius: 999px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--fc-muted);
+}
+.ftp-blurb { margin: 0 0 14px; color: var(--fc-muted); font-size: 0.88rem; line-height: 1.5; }
+
+/* Inverted pill: text-colour fill against a text-colour-tinted card reads as
+   the brightest thing on the stage, which a warm-on-warm accent button did
+   not. The live CTA also carries a soft halo; the disabled one deliberately
+   has neither. */
+.ftp-cta {
+  align-self: flex-start;
+  margin-top: auto;
+  background: var(--fc-text);
+  color: var(--fc-bg);
+}
+.ftp-cta:enabled { box-shadow: 0 8px 24px color-mix(in srgb, var(--fc-accent) 35%, transparent); }
+.ftp-cta:hover:enabled { background: var(--fc-accent-2); color: #fff; }
+
+/* Phones: two small cards a row, like the shop templates, instead of one
+   411px card per piece. The blurb waits for the studio (or a wider screen);
+   name, part count, finishes and the button are what a choice is made on. */
+@media (max-width: 679px) {
+  .ftp-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .ftp-grid .ftp-card { gap: 8px; padding: 10px 10px 12px; border-radius: 16px; }
+  .ftp-grid .ftp-shot-frame { min-height: 96px; padding: 8px; border-radius: 11px; }
+  .ftp-grid .ftp-shot { height: 80px; }
+  .ftp-grid .ftp-card-title { gap: 6px; margin-bottom: 4px; font-size: 0.95rem; line-height: 1.2; }
+  .ftp-grid .ftp-blurb { display: none; }
+  .ftp-grid .ftp-cta { align-self: stretch; padding-inline: 10px; font-size: 0.8rem; }
+}
+/* No lift on touch: a tapped card stayed raised until the next tap elsewhere. */
+@media (hover: none) {
+  .ftp-card:not(.is-unavailable):hover { transform: none; box-shadow: 0 20px 50px rgba(20, 12, 6, 0.18); }
+  .ftp-card:not(.is-unavailable):hover .ftp-shot { transform: none; }
+}
+
+/* ---------------------------------------------------------- grid pagination
+   The grid used to put every piece on screen at once, which worked at four
+   and turned into a scroll at eight. Paging it keeps a page to one band of
+   cards; this is the control that moves between them.
+
+   Deliberately not the carousel's floating round arrows: those sit over the
+   card they scroll, whereas a pager belongs under the list, in the reading
+   order, as a row you tab through. */
+.ftp-pager {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 26px;
+}
+
+.ftp-pager-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 16px;
+  border: 1px solid var(--fc-border);
+  border-radius: 999px;
+  background: var(--fc-panel);
+  color: var(--fc-text);
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 700;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background 0.18s ease, border-color 0.18s ease, transform 0.18s ease,
+    opacity 0.18s ease;
+}
+.ftp-pager-btn:hover:enabled {
+  background: color-mix(in srgb, var(--fc-accent) 14%, transparent);
+  border-color: var(--fc-accent);
+}
+.ftp-pager-btn:active:enabled { transform: scale(0.95); }
+/* Kept in place rather than hidden at the ends, so the row does not reflow
+   under the pointer on the very click that reaches the last page. */
+.ftp-pager-btn:disabled { opacity: 0.38; cursor: not-allowed; }
+
+.ftp-pager-nums { display: flex; align-items: center; gap: 6px; }
+
+.ftp-pager-num {
+  min-width: 36px;
+  height: 36px;
+  padding: 0 10px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  background: none;
+  color: var(--fc-muted);
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease,
+    transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.ftp-pager-num:hover { color: var(--fc-text); border-color: var(--fc-border); }
+.ftp-pager-num:active { transform: scale(0.92); }
+.ftp-pager-num.is-active {
+  background: var(--fc-accent);
+  border-color: var(--fc-accent);
+  color: #fff;
+  box-shadow: 0 6px 16px color-mix(in srgb, var(--fc-accent) 32%, transparent);
+}
+
+.ftp-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  padding-bottom: 4px;
+  border: 1px solid var(--fc-border);
+  border-radius: 999px;
+  background: var(--fc-panel);
+  color: var(--fc-text);
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(20, 12, 6, 0.22);
+  transition: background 0.18s ease, transform 0.18s ease, border-color 0.18s ease;
+}
+.ftp-arrow:hover { background: color-mix(in srgb, var(--fc-accent) 14%, transparent); border-color: var(--fc-accent); }
+.ftp-arrow:active { transform: translateY(-50%) scale(0.93); }
+.ftp-arrow-prev { left: 6px; }
+.ftp-arrow-next { right: 6px; }
+
+/* Segmented rail rather than dots: it reads as a position indicator. */
+.ftp-dots { display: flex; justify-content: center; gap: 6px; margin-top: 22px; }
+/* Held at its full width and scaled down when inactive, rather than animating
+   `width`: the old rule relaid out the row on every step change. */
+.ftp-dot {
+  width: 54px;
+  height: 4px;
+  padding: 0;
+  border: none;
+  border-radius: 999px;
+  background: var(--fc-border);
+  cursor: pointer;
+  transform: scaleX(0.48);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease, box-shadow 0.3s ease;
+}
+.ftp-dot:hover { background: var(--fc-accent); }
+.ftp-dot.is-active {
+  transform: scaleX(1);
+  background: var(--fc-accent);
+  box-shadow: 0 2px 8px rgba(20, 16, 11, 0.35);
+}
+
+.ftp-count {
+  margin: 12px 0 0;
+  text-align: center;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  color: var(--fc-muted);
+}
+
+/* The picker's stand-in while a generated piece is rebuilt, and its
+   explanation when it cannot be. The same slab as a piece card, so the page
+   does not change character between "opening" and "open" -- but it links to
+   nothing, so it keeps still under the pointer. */
+.ftp-card.ftp-status {
+  max-width: 560px;
+  margin: 0 auto;
+}
+.ftp-card.ftp-status:not(.is-unavailable):hover {
+  transform: none;
+  box-shadow: 0 20px 50px rgba(20, 12, 6, 0.18);
+}
+.ftp-status .ftp-cta {
+  transition: background 0.18s ease, color 0.18s ease, transform 0.16s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.ftp-status .ftp-cta:active { transform: scale(0.97); }
+
+/* Indeterminate on purpose: the fetch reports no progress worth showing, and
+   a percentage that jumps from 0 to 100 is worse than an honest "working". */
+.ftp-status-bar {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 3px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--fc-accent) 16%, transparent);
+}
+.ftp-status-bar::after {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 40%;
+  border-radius: inherit;
+  background: var(--fc-accent);
+  animation: ftp-status-sweep 1.3s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+@keyframes ftp-status-sweep {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(250%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ftp-status-bar::after { animation: none; width: 100%; opacity: 0.45; }
+  .ftp-status .ftp-cta:active { transform: none; }
+}
+/* Matches shop-profile.tsx's "back to shops" pill -- the app's one
+   established pattern for a page's own back link, top-left, not stranded
+   after the content it sits above. */
+
+@keyframes ftp-pop {
+  from { opacity: 0; transform: scale(0.86) translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes ftp-drift {
+  from { transform: translate3d(-2%, -1%, 0) scale(1); }
+  to { transform: translate3d(3%, 2%, 0) scale(1.08); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ftp-page::before { animation: none; }
+  .ftp-card { transition: none; }
+  .ftp-card:not(.is-unavailable):hover { transform: none; }
+  .ftp-shot { animation: none; transition: none; }
+  .ftp-card:not(.is-unavailable):hover .ftp-shot { transform: none; }
+  .ftp-icon { animation: none; }
+  .ftp-track,
+  .ftp-slide .ftp-card { transition: none; }
+  .ftp-viewtoggle-thumb { transition: none; }
+  .ftp-dot { transition: none; }
+  .ftp-pager-btn,
+  .ftp-pager-num { transition: none; }
+}
+
+@media (max-width: 640px) {
+  .ftp-page { padding: 28px 14px 44px; }
+  /* Columns for the piece grid are set with the other phone rules after
+     .ftp-cta: two across, minmax(0, 1fr) so they cannot overflow. */
+  .ftp-card { padding: 22px; }
+  .ftp-shot-frame { min-height: 130px; padding: 12px; }
+  .ftp-icon { width: 64px; height: 64px; font-size: 1.9rem; border-radius: 18px; }
+  .ftp-shot { height: 116px; }
+  .ftp-viewtoggle { width: 100%; margin-top: 14px; }
+  .ftp-viewtoggle-btn { flex: 1; justify-content: center; }
+  /* A slab has no room to lie down at this width. */
+  .ftp-slide { padding: 4px 42px; }
+  .ftp-slide .ftp-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 22px;
+    min-height: 0;
+  }
+  .ftp-slide .ftp-shot-frame { width: 100%; min-height: 150px; }
+  .ftp-slide .ftp-icon { width: 64px; height: 64px; font-size: 1.9rem; border-radius: 18px; }
+  .ftp-slide .ftp-shot { height: 140px; }
+  .ftp-slide .ftp-card-title { font-size: 1.3rem; }
+  .ftp-arrow { width: 36px; height: 36px; font-size: 1.35rem; }
+  .ftp-arrow-prev { left: 0; }
+  .ftp-arrow-next { right: 0; }
+  .ftp-dot { width: 18px; }
+  .ftp-dot.is-active { width: 38px; }
+  /* Previous and Next take a line of their own so neither shrinks to an
+     unreadable stub next to the numbers. */
+  .ftp-pager { gap: 8px; }
+  .ftp-pager-btn { flex: 1; justify-content: center; }
+  .ftp-pager-nums { order: -1; width: 100%; justify-content: center; }
+}
+
+/* ------------------------------------------------------- shop profile stage
+   The same instrument-panel language as the furniture studio picker -- a
+   dark, depth-lit backdrop with a faint measuring grid -- so a shop's own
+   page and the studio it leads into read as one place rather than two. Every
+   colour is a theme token, same as .ftp-page, so it reads correctly in light
+   mode too. */
+.shop-page {
+  position: relative;
+  isolation: isolate;
+  background: var(--fc-bg);
+  color: var(--fc-text);
+}
+.shop-page::before {
+  content: "";
+  position: fixed;
+  inset: -25%;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    radial-gradient(38% 42% at 22% 12%, var(--fc-cane-soft), transparent 70%),
+    radial-gradient(34% 38% at 82% 60%, var(--fc-cane-soft), transparent 72%);
+  animation: ftp-drift 22s ease-in-out infinite alternate;
+}
+.shop-page::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  /* The caned ground again, so a storefront sits on the same panel as the
+     studio and the picker rather than on a generic hairline grid. */
+  background-image:
+    repeating-linear-gradient(to right, var(--fc-cane-soft) 0 1px, transparent 1px 30px),
+    repeating-linear-gradient(to bottom, var(--fc-cane-soft) 0 1px, transparent 1px 30px),
+    repeating-linear-gradient(45deg, var(--fc-cane-soft) 0 1px, transparent 1px 42px),
+    repeating-linear-gradient(-45deg, var(--fc-cane-soft) 0 1px, transparent 1px 42px);
+  opacity: 0.55;
+  mask-image: radial-gradient(70% 45% at 50% 0%, #000 30%, transparent 78%);
+  -webkit-mask-image: radial-gradient(70% 45% at 50% 0%, #000 30%, transparent 78%);
+}
+@media (prefers-reduced-motion: reduce) {
+  .shop-page::before { animation: none; }
+}
+.dark .shop-page::before { opacity: 0.85; }
+
+/* Gallery inline-edit buttons */
+.shop-gallery-photo {
+  position: relative;
+}
+.shop-gallery-remove {
+  position: absolute;
+  top: 0.4rem;
+  right: 0.4rem;
+  z-index: 5;
+  display: grid;
+  place-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  font-size: 0.75rem;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s ease, background 0.2s ease;
+}
+.shop-gallery-photo:hover .shop-gallery-remove {
+  opacity: 1;
+}
+.shop-gallery-remove:hover {
+  background: #c0392b;
+}
+
+/* Template owner actions (hide / edit / delete): a row inside the card, under
+   the title. They used to float over the photo, hover-only, which hid them
+   entirely on a phone and, once shown, covered most of a 160px picture. */
+.shop-template-actions {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: auto;
+  justify-content: start;
+  gap: 0.375rem;
+  margin-top: 0.5rem;
+}
+.shop-template-action-btn {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 999px;
+  border: 1px solid var(--fc-border);
+  background: transparent;
+  color: var(--fc-text);
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.12s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.shop-template-action-btn:hover { background: color-mix(in srgb, var(--fc-accent) 10%, transparent); }
+.shop-template-action-btn:active { transform: scale(0.94); }
+.shop-template-action-btn[aria-pressed="true"] {
+  border-color: var(--fc-accent);
+  background: color-mix(in srgb, var(--fc-accent) 14%, transparent);
+  color: var(--fc-ink-accent);
+}
+.shop-template-action-btn:disabled { cursor: not-allowed; opacity: 0.6; }
+/* Icons alone where three words do not fit (a 160px phone card); words
+   beside them wherever the row has the room, since an eye-with-a-line was a
+   guess. Measured on the row, not the screen: the shop page lays cards four
+   across, so a desktop row there is only 200px wide. Not on touch, where
+   the row is split in equal thirds and a third is too narrow for "Delete". */
+.shop-template-actions { container-type: inline-size; }
+.shop-template-action-label { display: none; }
+@media (pointer: fine) {
+  @container (min-width: 196px) {
+    .shop-template-actions .shop-template-action-btn {
+      display: inline-flex;
+      gap: 0.25rem;
+      width: auto;
+      padding: 0 0.4rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    .shop-template-action-label { display: inline; }
+  }
+}
+.shop-template-action-btn.danger:hover {
+  border-color: var(--fc-danger);
+  background: color-mix(in srgb, var(--fc-danger) 10%, transparent);
+  color: var(--fc-danger);
+}
+@media (pointer: coarse) {
+  /* Three 44px buttons and their gaps are wider than a 160px card's body, so
+     on touch the row shares the card's width instead: each button is as wide
+     as a third of it allows and still 44px tall. */
+  .shop-template-actions { grid-auto-columns: minmax(0, 1fr); justify-content: stretch; }
+  .shop-template-actions .shop-template-action-btn { width: 100%; height: 2.75rem; }
+}
+
+/* A hidden template, as only its owner ever sees it: faded, and saying so in
+   words on the picture so it is not mistaken for one still loading. */
+.shop-template.is-hidden .shop-template-shot img { opacity: 0.4; filter: grayscale(0.7); }
+.shop-template.is-hidden .shop-template-body { opacity: 0.75; }
+.shop-template-hidden-badge {
+  position: absolute;
+  bottom: 0.5rem;
+  left: 0.5rem;
+  z-index: 4;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.3rem 0.65rem;
+  border-radius: 999px;
+  background: rgba(20, 12, 6, 0.72);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+.shop-template-hidden-badge { max-width: calc(100% - 1rem); }
+
+/* ------------------------------------------------------- design templates
+   Built for this stage rather than borrowed from the studio picker: .ftp-card
+   is a pale slab, and on a dark page a row of them reads as light panels
+   dropped onto the design rather than part of it. */
+/* Two to a row on a phone (each about 160px wide), more from sm up. The
+   cards used to be 240px minimum, one per row on a phone at ~405px tall. */
+.shop-template-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.shop-template {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid var(--fc-border);
+  border-radius: 20px;
+  background: var(--fc-panel);
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+/* Lift only where there is a pointer to hover with; a tap is not a hover. */
+@media (hover: hover) and (pointer: fine) {
+.shop-template:hover {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--fc-accent) 55%, transparent);
+  box-shadow: 0 20px 44px rgba(0, 0, 0, 0.34);
+}
+}
+/* The thumbnail sits on the same measuring grid as the page behind it, so an
+   empty frame still looks like part of the instrument panel. */
+.shop-template-shot {
+  position: relative;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  border-bottom: 1px solid var(--fc-border);
+  background-color: color-mix(in srgb, var(--fc-accent) 5%, transparent);
+  background-image:
+    repeating-linear-gradient(to right, var(--fc-cane-soft) 0 1px, transparent 1px 22px),
+    repeating-linear-gradient(to bottom, var(--fc-cane-soft) 0 1px, transparent 1px 22px),
+    repeating-linear-gradient(45deg, var(--fc-cane-soft) 0 1px, transparent 1px 31px),
+    repeating-linear-gradient(-45deg, var(--fc-cane-soft) 0 1px, transparent 1px 31px);
+}
+/* Taken out of flow on purpose. As a grid child under `place-items: center`
+   the image is not stretched, so its `height: 100%` resolves against a track
+   sized by the image itself -- circular, so the browser falls back to the
+   intrinsic height and the aspect-ratio box is ignored. A portrait render
+   then made its card twice the height of its neighbours. */
+.shop-template-shot img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.shop-template-empty {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--fc-muted);
+}
+.shop-template-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px 12px 12px;
+}
+.shop-template-body > .btn { margin-top: auto; }
+.shop-template-body > :last-child { margin-top: auto; padding-top: 10px; }
+@media (min-width: 640px) {
+  .shop-template-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; }
+  .shop-template-body { padding: 14px 14px 16px; }
+}
+.shop-template-tag {
+  align-self: flex-start;
+  margin-top: 6px;
+  padding: 2px 9px;
+  border: 1px solid var(--fc-border);
+  border-radius: 999px;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fc-ink-accent);
+}
+@media (prefers-reduced-motion: reduce) {
+  .shop-template { transition: none; }
+  .shop-template:hover { transform: none; }
+}
+
+/* --------------------------------------------------------- dashboard density
+   The overview was built at a scale where the hero filled the window on its
+   own, so the sections underneath -- choosing a shop, orders, messages --
+   were always below the fold. This trims its vertical cost without changing
+   the layout; the card-shaped overrides that used to live here (radius,
+   padding-as-a-box, shadow) are gone along with the card shape itself. */
+.dash-hero { padding-bottom: 18px; }
+.dash-hero h1 { font-size: clamp(1.3rem, 2.2vw, 1.75rem); margin: 0 0 6px; }
+.dash-hero p { font-size: 0.88rem; line-height: 1.5; max-width: 62ch; }
+.dash-hero-actions { gap: 10px; margin-top: 14px; }
+.dash-hero-btn-primary,
+.dash-hero-btn-secondary { padding: 9px 18px; font-size: 0.85rem; }
+
+.card { padding: 18px; border-radius: 14px; }
+.card h3 { margin-bottom: 8px; font-size: 1.05rem; }
+.dashboard-grid { gap: 16px; }
+.dashboard-body { margin: 14px 0; }
+.page-title { margin-bottom: 18px; }
+.page-title h1 { font-size: 22px; margin-bottom: 4px; }
+.page-title p { font-size: 0.88rem; }
+.status-banner { padding: 14px 16px; border-radius: 16px; }
+
+/* ------------------------------------------------------------- dark mode
+   Surfaces that had no dark rule and kept their light values: the user pill
+   sat at 70% white, the header was darker than every panel around it, and
+   the status banners tinted themselves for a pale background. */
+.dark .dashboard-header { background: var(--fc-panel); }
+.dark .dashboard-user-pill { background: var(--fc-panel); border-color: var(--fc-border); }
+.dark .dashboard-action-btn { background: var(--fc-panel); border-color: var(--fc-border); color: var(--fc-text); }
+.dark .status-banner { background: var(--fc-panel); border-color: var(--fc-border); box-shadow: none; }
+.dark .status-banner.pending { border-color: rgba(231, 156, 76, 0.45); background: rgba(231, 156, 76, 0.12); }
+.dark .status-banner.none { background: rgba(244, 214, 180, 0.05); }
+.dark .shop-avatar-badge { background: rgba(212, 152, 103, 0.16); }
+.dark .btn-secondary { background: var(--fc-panel); }
+
+/* The stage reads darker and the slab's edge brighter against a dark page. */
+.dark .ftp-arrow { box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5); }
+.dark .ftp-card { box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55); }
+.dark .ftp-page::before { opacity: 0.85; }
+.dark .ftp-cta:enabled { box-shadow: 0 8px 26px rgba(212, 152, 103, 0.32); }
+
+/* --- Conversation thread -------------------------------------------------
+   The layout is borrowed from mobile Messenger -- three bands, bubbles with a
+   tail on the closing message of a run -- because that is the chat vocabulary
+   every customer here already has. The palette is not: every colour below is
+   one of the app's own tokens, so the thread wears the same walnut and brass
+   as the rest of FurniCraft.
+
+   Because those tokens already flip under .dark, this needs no dark-mode
+   block of its own. It had one while the colours were literals; that was the
+   only reason it existed. */
+.msgr {
+  /* --fc-btn / --fc-btn-fg move together on purpose: the primary fill is deep
+     walnut in light and pale cane in dark, and a hardcoded white foreground
+     read at 1.45:1 on the cane. Using the pair keeps a sent bubble legible in
+     both themes. */
+  --msgr-sent-bg: var(--fc-btn);
+  --msgr-sent-fg: var(--fc-btn-fg);
+  --msgr-recv-bg: var(--fc-cane-soft);
+  --msgr-recv-fg: var(--fc-text);
+  --msgr-surface: var(--fc-panel);
+  --msgr-chrome: var(--fc-panel);
+  --msgr-hairline: var(--fc-border);
+  --msgr-muted: var(--fc-muted);
+  --msgr-field: var(--fc-bg);
+  --msgr-action: var(--fc-ink-accent);
+}
+
+/* On a phone the thread is the screen, the way it is in the app this borrows
+   from: fixed over the dashboard, with its own back arrow out. Handled here
+   rather than with responsive utilities so it cannot lose a specificity fight
+   with the base rule.
+
+   100dvh, not 100vh: on iOS the address bar collapses on scroll and a vh-sized
+   column jumps by its height mid-gesture. */
+.msgr {
+  position: fixed;
+  inset: 0;
+  /* Over the dashboard header and tab bar (20), the FAQ bubble (25) and the
+     drawer (40); under every dialog (50 and up). It was 60, which put the
+     order details, View terms, call and report dialogs a phone opens from
+     this thread underneath it: open, but invisible. */
+  z-index: 45;
+  background: var(--msgr-surface);
+  color: var(--msgr-recv-fg);
+}
+
+/* The height comes from `inset: 0`, not from a `height: 100dvh` beside it.
+   Both were set here at first, and the explicit height wins over the bottom
+   inset, so anywhere the two disagree the overlay stopped short of the bottom
+   of the screen and the dashboard showed through under the composer. A fixed
+   element pinned on all four sides is measured against the same viewport dvh
+   reports, so it tracks the address bar collapsing without being told to. */
+@supports not (height: 100dvh) {
+  .msgr { height: 100vh; }
+}
+
+/* From lg up the conversation list is always on screen beside it, so the
+   thread goes back to being one pane of a two-pane layout. */
+@media (min-width: 1024px) {
+  .msgr {
+    position: static;
+    z-index: auto;
+    height: 620px;
+    border: 1px solid var(--msgr-hairline);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+}
+
+.msgr-scroll {
+  /* overscroll-contain stops a rubber-band at the top of the thread from
+     scrolling the dashboard behind it. */
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+
+.msgr-bubble {
+  /* The 70-75% cap lives on the wrapper that is the flex item; see the note
+     beside it. Here it only has to not exceed that wrapper. */
+  max-width: 100%;
+  border-radius: 18px;
+  padding: 8px 12px;
+  font-size: 15px;
+  line-height: 20px;
+  overflow-wrap: anywhere;
+  transition: transform 0.12s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.msgr-bubble:active { transform: scale(0.98); }
+
+.msgr-bubble-sent { background: var(--msgr-sent-bg); color: var(--msgr-sent-fg); }
+.msgr-bubble-recv { background: var(--msgr-recv-bg); color: var(--msgr-recv-fg); }
+
+/* Only the closing bubble of a run tightens, so a group reads as one utterance
+   with a tail rather than a stack of identical lozenges. */
+.msgr-bubble-sent.is-tail { border-bottom-right-radius: 4px; }
+.msgr-bubble-recv.is-tail { border-bottom-left-radius: 4px; }
+
+.msgr-field {
+  background: var(--msgr-field);
+  border-radius: 20px;
+  color: var(--msgr-recv-fg);
+}
+.msgr-field::placeholder { color: var(--msgr-muted); }
+
+.msgr-reaction {
+  background: var(--msgr-surface);
+  border: 1px solid var(--msgr-hairline);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .msgr-bubble { transition: none; }
+  .msgr-bubble:active { transform: none; }
+}
+
+/* --- Studio part controls, as a bottom sheet on a phone ------------------
+   Stacked, the studio is: piece rail, 3D viewport at 45vh, then the sidebar.
+   That put a part's finish and size controls below the fold, so picking a
+   part meant scrolling away from the very model you picked it on, changing a
+   slider blind, and scrolling back to see what it did.
+
+   On a phone the panel lifts out of that column and sits over the bottom of
+   the screen instead, so the chair and the control changing it are visible at
+   the same time. From lg up the sidebar has the room for it and this is an
+   ordinary block again. */
+.studio-part-sheet {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 40;
+  max-height: 60dvh;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: var(--fc-panel);
+  border-top: 1px solid var(--fc-border);
+  border-radius: 18px 18px 0 0;
+  box-shadow: 0 -14px 34px rgba(26, 19, 9, 0.18);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.dark .studio-part-sheet {
+  box-shadow: 0 -14px 34px rgba(0, 0, 0, 0.55);
+}
+
+@media (min-width: 1024px) {
+  .studio-part-sheet {
+    position: static;
+    max-height: none;
+    overflow: visible;
+    border-top: 0;
+    border-radius: 0;
+    box-shadow: none;
+    padding-bottom: 0;
+  }
+}
+
+/* --- Dashboard header: keep it on one line -------------------------------
+   The header is brand on the left, controls on the right. Neither side could
+   shrink and the user's name never truncated, so a long one ("Mark Rian
+   Fernandez") made the pill wider than the room available: it rode over the
+   FurniCraft wordmark, wrapped to two lines, and flex-wrap threw the bell
+   above it and Sign out below. Both sides shrink now, and the name clips. */
+.dashboard-header { gap: 12px; }
+
+.dashboard-header-left {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.dashboard-logo {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dashboard-header-right {
+  flex-wrap: nowrap;
+  flex-shrink: 0;
+  min-width: 0;
+}
+
+/* Wide enough that a full name still reads next to the role badge, which is
+   set in 0.2em tracking and takes most of a narrower pill for itself. */
+.dashboard-user-pill {
+  min-width: 0;
+  max-width: 320px;
+}
+
+.dashboard-user-name {
+  min-width: 0;
+  flex: 0 1 auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* The drawer already names who is signed in, with their avatar and email
+   beside it. On a phone that makes this a second copy of the same fact, and
+   it is the copy with nowhere to go. */
+@media (max-width: 640px) {
+  .dashboard-user-pill { display: none; }
+}
+
+/* --- Phone tab bar (components/dashboard/bottom-tab-bar.tsx) ---------------
+   Below lg a dashboard that renders .fc-tabbar navigates from the bottom of
+   the screen: the menu button, the Back button, the name pill and Sign out leave
+   the header, which keeps the wordmark, the bell and an avatar that opens the
+   drawer. Everything is scoped with body:has(.fc-tabbar), so a dashboard that
+   has no bar yet (the shop dashboard) keeps its header exactly as it was. */
+.fc-tabbar {
+  position: fixed;
+  inset-inline: 0;
+  bottom: 0;
+  z-index: 20; /* under the drawer's scrim (30) and every modal (50) */
+  padding: 6px 4px calc(6px + env(safe-area-inset-bottom, 0px));
+  background: var(--fc-panel);
+  border-top: 1px solid var(--fc-border);
+}
+.fc-tabbar-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(var(--fc-tabbar-count, 5), minmax(0, 1fr));
+}
+.fc-tab {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  width: 100%;
+  min-height: 52px;
+  padding: 4px 2px 0;
+  border: 0;
+  background: none;
+  color: var(--fc-muted);
+  font: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.2;
+  text-decoration: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: color 150ms ease, transform 120ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.fc-tab:active { transform: scale(0.94); }
+.fc-tab:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+.fc-tab:focus-visible { outline: 2px solid var(--fc-accent); outline-offset: -2px; border-radius: 12px; }
+.fc-tab[aria-current="page"] { color: var(--fc-text); }
+.fc-tab-label {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.fc-tab-icon {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 28px;
+  border-radius: 999px;
+  transition: background-color 150ms ease, color 150ms ease;
+}
+.fc-tab[aria-current="page"] .fc-tab-icon {
+  background: color-mix(in srgb, var(--fc-accent) 16%, transparent);
+  color: var(--fc-ink-accent);
+}
+/* The tab that starts something, rather than a place. */
+.fc-tab-primary .fc-tab-icon {
+  width: 44px;
+  background: var(--fc-btn);
+  color: var(--fc-btn-fg);
+}
+.fc-tab-primary { color: var(--fc-text); }
+.fc-tab-badge {
+  position: absolute;
+  top: 0;
+  left: calc(50% + 6px);
+  display: grid;
+  place-items: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 999px;
+  background: var(--fc-danger);
+  color: var(--fc-danger-fg);
+  font-size: 10px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  box-shadow: 0 0 0 2px var(--fc-panel);
+}
+
+.dashboard-account-desktop { display: contents; }
+.dashboard-avatar-btn {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin-right: -6px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 120ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.dashboard-avatar-btn:active { transform: scale(0.94); }
+.dashboard-avatar-btn:focus-visible { outline: 2px solid var(--fc-accent); outline-offset: 0; }
+.dashboard-avatar-face {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  overflow: hidden;
+  border-radius: 999px;
+  border: 1px solid var(--fc-border);
+  background: color-mix(in srgb, var(--fc-accent) 14%, transparent);
+  color: var(--fc-ink-accent);
+  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+}
+.dashboard-avatar-face img { width: 100%; height: 100%; object-fit: cover; }
+
+@media (min-width: 1024px) {
+  .fc-tabbar { display: none; }
+}
+@media (max-width: 1023px) {
+  /* Read by anything else pinned to the bottom of the screen (the FAQ bubble,
+     notification toasts) so it sits above the bar instead of on it. */
+  body:has(.fc-tabbar) { --fc-tabbar-offset: calc(65px + env(safe-area-inset-bottom, 0px)); /* 52px tab + 6px padding top and bottom + 1px border */ }
+  body:has(.fc-tabbar) .dashboard-main { padding-bottom: calc(40px + var(--fc-tabbar-offset)); }
+  /* The studio's Add to cart bar and the cart's Send bar are pinned to the
+     bottom the same way; a toast landed on top of their buttons. */
+  body:has(.fc-bottom-action-bar) { --fc-tabbar-offset: calc(76px + env(safe-area-inset-bottom, 0px)); }
+  body:has(.fc-tabbar) .dashboard-header .menu-btn,
+  body:has(.fc-tabbar) .dashboard-header .dashboard-account-desktop { display: none; }
+}
+/* The avatar is the phone's way into the drawer; on a desktop the sidebar and
+   the name pill already do that. Also hidden wherever there is no tab bar. */
+body:not(:has(.fc-tabbar)) .dashboard-avatar-btn { display: none; }
+@media (min-width: 1024px) {
+  .dashboard-avatar-btn { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fc-tab:active, .dashboard-avatar-btn:active { transform: none; }
+}
+
+/* --- Mode bar (components/dashboard/mode-bar.tsx) -------------------------
+   The top edge of the whole app frame: full width, above the header AND the
+   sidebar, which both start below it (--fc-modebar-h). So it never moves --
+   opening or closing the desktop sidebar slides the sidebar in under it and
+   shifts the header beside it, and the bar stays put, the way a window's
+   title bar does. It used to sit beside the sidebar and slide with the
+   header's margin. Shop mode is the walnut of the primary button, so the two
+   sides differ in colour as well as in words. */
+body:has(.fc-modebar) { --fc-modebar-h: 36px; }
+@media (pointer: coarse) { body:has(.fc-modebar) { --fc-modebar-h: 44px; } }
+.fc-modebar {
+  position: sticky;
+  top: 0;
+  z-index: 41; /* over the sidebar (40), so the frame reads as one piece */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: var(--fc-modebar-h, 36px);
+  padding: 0 16px;
+  font-size: 12.5px;
+  line-height: 1.2;
+}
+body:has(.fc-modebar) .fc-dashboard-sidebar { top: var(--fc-modebar-h); }
+.fc-modebar[data-mode="shop"] { background: var(--fc-btn); color: var(--fc-btn-fg); }
+.fc-modebar[data-mode="customer"] {
+  background: color-mix(in srgb, var(--fc-accent) 18%, var(--fc-panel));
+  color: var(--fc-text);
+  /* Inset rather than a border, so the bar stays exactly its min-height and
+     the header's sticky offset below meets it without covering the line. */
+  box-shadow: inset 0 -1px 0 color-mix(in srgb, var(--fc-accent) 30%, transparent);
+}
+.fc-modebar-switch {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  white-space: nowrap;
+}
+@media (pointer: coarse) { .fc-modebar-switch { min-height: 44px; } }
+body:has(.fc-modebar) .dashboard-header,
+body:has(.fc-modebar) .fc-shop-header { top: var(--fc-modebar-h); }
+
+/* --- "In chat" from the pinned orders list (scrollToThreadEntry) ----------
+   A wash behind the card that fades out, so the eye lands on the right one
+   after the jump. Colour only, so it stays under reduced motion. */
+@keyframes msgr-flash {
+  0%, 35% { background-color: color-mix(in srgb, var(--fc-accent) 22%, transparent); }
+  100% { background-color: transparent; }
+}
+.msgr-flash { animation: msgr-flash 1600ms ease-out; border-radius: 16px; }
+
+/* --- Blueprint viewer (components/design/blueprint-viewer.tsx) ------------
+   touch-action: none on the scroller so a two-finger pinch reaches the
+   component's own handler instead of being eaten as a page gesture; one
+   finger still pans, because the handler only claims a gesture once there
+   are two pointers down. */
+.fc-bp-scroll {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  background: #f4f7fa;
+  touch-action: pan-x pan-y pinch-zoom;
+  -webkit-overflow-scrolling: touch;
+}
+.fc-bp-holder {
+  display: inline-block;
+  padding: 8px;
+}
+.fc-bp-bar {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 10px;
+  padding-bottom: max(8px, env(safe-area-inset-bottom));
+  border-top: 1px solid var(--fc-border);
+  background: var(--fc-panel);
+}
+.fc-bp-btn {
+  display: inline-grid;
+  place-items: center;
+  min-width: 48px;
+  min-height: 44px;
+  padding: 0 10px;
+  border: 1px solid var(--fc-border);
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--fc-text);
+  background: transparent;
+  transition: background-color 150ms ease, border-color 150ms ease, transform 150ms ease;
+}
+.fc-bp-btn:hover { background: var(--fc-cane-soft); }
+.fc-bp-btn:active { transform: scale(0.96); }
+.fc-bp-btn.is-on {
+  border-color: var(--fc-ink-accent);
+  background: color-mix(in srgb, var(--fc-accent) 12%, transparent);
+  color: var(--fc-ink-accent);
+}
+.fc-bp-btn-icon { min-width: 44px; font-size: 17px; }
+.fc-bp-zoom {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--fc-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- Commission steps (components/dashboard/home/customer-home.tsx) -------
+   Three cells, stacked on a phone and in a row from sm. A done step is
+   marked by the tick and the warmer ground, not by colour alone. */
+.dash-steps {
+  border: 1px solid var(--fc-border);
+  border-radius: 18px;
+  background: var(--fc-panel);
+  overflow: hidden;
+}
+.dash-steps-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.dash-step {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 14px 16px;
+  border-top: 1px solid var(--fc-border);
+}
+.dash-step:first-child { border-top: 0; }
+.dash-step[data-done] { background: color-mix(in srgb, var(--fc-accent) 5%, transparent); }
+.dash-step-label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fc-muted);
+}
+.dash-step-marker {
+  display: grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  border: 1px solid var(--fc-border);
+  border-radius: 999px;
+  font-size: 10px;
+  font-variant-numeric: tabular-nums;
+  color: var(--fc-muted);
+}
+.dash-step[data-done] .dash-step-label { color: var(--fc-ink-accent); }
+.dash-step[data-done] .dash-step-marker {
+  border-color: var(--fc-ink-accent);
+  background: var(--fc-ink-accent);
+  color: var(--fc-btn-fg);
+}
+.dash-step-main {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+.dash-step-value {
+  margin: 0;
+  min-width: 0;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--fc-text);
+  overflow-wrap: anywhere;
+}
+.dash-step:not([data-done]) .dash-step-value { color: var(--fc-muted); font-weight: 500; }
+.dash-step-action {
+  align-self: flex-start;
+  min-height: 44px;
+  margin: -10px 0;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--fc-ink-accent);
+  transition: opacity 150ms ease, transform 150ms ease;
+}
+.dash-step-action:hover { text-decoration: underline; }
+.dash-step-action:active { transform: scale(0.98); }
+@media (min-width: 640px) {
+  .dash-steps-list { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .dash-step {
+    border-top: 0;
+    border-left: 1px solid var(--fc-border);
+    padding: 16px;
+  }
+  .dash-step:first-child { border-left: 0; }
+  .dash-step-action { margin: 0; min-height: 0; }
+}
+
+/* --- Dialog shell (components/ui/modal.tsx) -------------------------------
+   Mobile-first, because the measurements said so: the order detail held
+   3011px of content in a 731px box with the close button at the top of the
+   scroll, so once you read past the first screen there was no way out but
+   hitting the 16px of scrim beside the card. On a phone a dialog is now the
+   screen -- full bleed, header pinned, body the only thing that scrolls --
+   and from sm up it is the centred card it always was.
+
+   Deliberately NOT built on .card: that carries a :hover transform, which
+   both animates a dialog under the cursor and establishes a containing block
+   that would break any position:fixed child.
+
+   No max-width here on purpose. This file is loaded after @tailwind
+   utilities, so a max-width set in this rule would beat a caller's
+   `sm:max-w-5xl`; the width is the caller's to pass. */
+.fc-modal-scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  background: var(--fc-scrim);
+}
+.fc-modal-panel {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  width: 100%;
+  /* dvh, not vh: with a phone browser's toolbars shown, 100vh is taller than
+     what you can actually see, which pushes a footer under the chrome. */
+  height: 100dvh;
+  background: var(--fc-panel);
+  color: var(--fc-text);
+  border: 1px solid color-mix(in srgb, var(--fc-accent) 8%, transparent);
+  outline: none;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+.fc-modal-head {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  flex-shrink: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 16px;
+  padding-top: max(12px, env(safe-area-inset-top));
+  border-bottom: 1px solid var(--fc-border);
+  background: var(--fc-panel);
+}
+.fc-modal-eyebrow {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fc-ink-accent);
+}
+.fc-modal-title {
+  margin: 2px 0 0;
+  font-size: 1.0625rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--fc-text);
+  overflow-wrap: anywhere;
+}
+/* 44px, the smallest target a thumb hits reliably. It was 32px here and 24px
+   on the blueprint. The negative margin keeps the optical padding at 12px
+   while the hit area stays full size. */
+.fc-modal-close {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin: -6px -6px -6px 0;
+  border-radius: 999px;
+  color: var(--fc-muted);
+  transition: background-color 150ms ease, color 150ms ease, transform 150ms ease;
+}
+.fc-modal-close:hover {
+  background: var(--fc-cane-soft);
+  color: var(--fc-text);
+}
+.fc-modal-close:active { transform: scale(0.94); }
+/* No padding here on purpose: this file loads after @tailwind utilities, so a
+   padding set in this rule would beat a caller's own `p-0`. The default
+   padding is applied as utilities in the component instead. */
+.fc-modal-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  /* Keeps a scroll gesture that reaches the end of this box from carrying on
+     into the page behind the dialog. */
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+.fc-modal-foot {
+  flex-shrink: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 12px 16px;
+  border-top: 1px solid var(--fc-border);
+  background: var(--fc-panel);
+}
+@media (min-width: 640px) {
+  .fc-modal-scrim {
+    align-items: center;
+    overflow-y: auto;
+    padding: 24px;
+  }
+  .fc-modal-panel {
+    height: auto;
+    padding-bottom: 0;
+    max-height: min(90dvh, 56rem);
+    margin: auto;
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(30, 20, 12, 0.12);
+  }
+  .fc-modal-head { padding: 16px 24px; }
+  .fc-modal-body { padding: 24px; }
+  .fc-modal-foot { padding: 16px 24px; }
+}
+
+/* --- Bottom sheet (components/ui/bottom-sheet.tsx) ------------------------
+   Always mounted; data-open flips it. Enter: 320ms on the iOS drawer curve.
+   Exit: 200ms, faster than the entry, and visibility drops only once the
+   panel is off screen, so it stays out of the tab order and the a11y tree
+   while closed. */
+.fc-sheet-root {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  visibility: hidden;
+  pointer-events: none;
+  transition: visibility 0s linear 200ms;
+}
+.fc-sheet-root[data-open] {
+  visibility: visible;
+  pointer-events: auto;
+  transition: visibility 0s linear 0s;
+}
+.fc-sheet-scrim {
+  position: absolute;
+  inset: 0;
+  background: var(--fc-scrim);
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+.fc-sheet-root[data-open] .fc-sheet-scrim { opacity: 1; transition-duration: 280ms; }
+.fc-sheet-panel {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  max-height: min(86dvh, 720px);
+  display: flex;
+  flex-direction: column;
+  border-radius: 24px 24px 0 0;
+  background: var(--fc-panel);
+  color: var(--fc-text);
+  box-shadow: 0 -12px 40px rgba(43, 24, 16, 0.18);
+  outline: none;
+  transform: translateY(100%);
+  transition: transform 200ms cubic-bezier(0.4, 0, 1, 1);
+}
+.fc-sheet-root[data-open] .fc-sheet-panel {
+  transform: translateY(0);
+  transition: transform 320ms cubic-bezier(0.32, 0.72, 0, 1);
+}
+/* From sm up it stops being a sheet.
+   It used to stay glued to the bottom edge at a fixed 480px, square-cornered
+   along the bottom, with a drag handle a mouse cannot use -- a phone control
+   stranded on a desktop, and at 640px exactly it left an 80px margin either
+   side that looked like a mistake. Here it is the centred dialog the rest of
+   the app uses, scaling in rather than sliding up, and its width follows the
+   viewport instead of being a constant.
+
+   Centred with flex rather than a translate on purpose: the drag handler
+   writes transform inline while a finger is down, and the reduced-motion
+   block below sets `transform: none` -- either would fight a transform-based
+   centring and drop the panel out of position. */
+@media (min-width: 640px) {
+  .fc-sheet-root {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  .fc-sheet-panel {
+    position: relative;
+    inset: auto;
+    margin: 0;
+    width: min(480px, 100%);
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(30, 20, 12, 0.18);
+    transform: scale(0.97);
+    opacity: 0;
+    transition: transform 200ms cubic-bezier(0.4, 0, 1, 1), opacity 160ms ease;
+  }
+  .fc-sheet-root[data-open] .fc-sheet-panel {
+    transform: scale(1);
+    opacity: 1;
+    transition: transform 320ms cubic-bezier(0.32, 0.72, 0, 1), opacity 180ms ease;
+  }
+  /* The handle is a thumb affordance and the grab area is not draggable here.
+     Scoped through .fc-sheet-panel because these three are declared further
+     down this file: a media query adds no specificity, so a bare
+     `.fc-sheet-handle` here would lose to the later `.fc-sheet-handle`. */
+  .fc-sheet-panel .fc-sheet-handle { display: none; }
+  .fc-sheet-panel .fc-sheet-grab { cursor: default; touch-action: auto; padding-top: 16px; }
+  /* No home indicator to clear on a desktop. */
+  .fc-sheet-panel .fc-sheet-body { padding-bottom: 20px; }
+}
+.fc-sheet-grab {
+  flex: none;
+  padding: 8px 16px 4px;
+  touch-action: none;
+  cursor: grab;
+}
+.fc-sheet-handle {
+  display: block;
+  width: 40px;
+  height: 5px;
+  margin: 0 auto 10px;
+  border-radius: 999px;
+  background: var(--fc-border);
+}
+.fc-sheet-title {
+  margin: 0;
+  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.fc-sheet-close {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin-right: -10px;
+  border: 0;
+  border-radius: 999px;
+  background: none;
+  color: var(--fc-muted);
+  cursor: pointer;
+  transition: color 150ms ease, transform 120ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.fc-sheet-close:active { transform: scale(0.94); }
+.fc-sheet-body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 8px 16px calc(20px + env(safe-area-inset-bottom, 0px));
+}
+@media (prefers-reduced-motion: reduce) {
+  /* No travel: the sheet fades in place instead. */
+  .fc-sheet-panel, .fc-sheet-root[data-open] .fc-sheet-panel {
+    transform: none;
+    opacity: 0;
+    transition: opacity 150ms ease;
+  }
+  .fc-sheet-root[data-open] .fc-sheet-panel { opacity: 1; }
+  .fc-sheet-close:active { transform: none; }
+}
+
+/* --- The nail cursor and the hammer strike -------------------------------
+   Drawn by components/cursor/nail-cursor.tsx, which owns the behaviour and
+   enables the desktop pointer. Everything here is inert
+   until that component mounts and puts .nail-cursor on <html>.
+
+   The tool is toned from the world's own timber rather than from steel grey:
+   walnut body against a linen halo in daylight, cane against kamagong at
+   night, so the cursor stays legible over the lit 3D studio and the paper
+   ledger surfaces alike without ever introducing a colour the product does
+   not already own. */
+:root {
+  --fc-nail-body: #2B1810;
+  --fc-nail-head: #C67D38;
+  --fc-nail-sheen: rgba(255, 255, 255, 0.5);
+  /* A halo in the page ground, painted behind the fill via paint-order, so the
+     nail holds its silhouette over a dark render as well as over paper. */
+  --fc-nail-edge: rgba(248, 246, 240, 0.92);
+  --fc-hammer-steel: #3A3027;
+  --fc-hammer-wood: #A6642A;
+  --fc-hammer-grip: #5E3418;
+}
+.dark {
+  --fc-nail-body: #E8D5A9;
+  --fc-nail-head: #D4954A;
+  --fc-nail-sheen: rgba(255, 255, 255, 0.65);
+  --fc-nail-edge: rgba(12, 10, 8, 0.72);
+  --fc-hammer-steel: #C9BCA6;
+  --fc-hammer-wood: #C08A3E;
+  --fc-hammer-grip: #8A5A22;
+}
+
+/* The system arrow only goes away once a nail is actually being drawn in its
+   place -- this class is added from an effect, so a browser with JS off or a
+   phone with no mouse never loses its pointer. */
+html.nail-cursor,
+html.nail-cursor * {
+  cursor: none !important;
+}
+/* The caret still wins where text is being edited. Kept in sync with
+   TEXT_SELECTOR in components/cursor/nail-cursor.tsx, which hides the nail
+   over the same elements so the two are never on screen together. */
+html.nail-cursor :is(
+    textarea,
+    [contenteditable="true"],
+    input:not([type]),
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="search"],
+    input[type="number"],
+    input[type="tel"],
+    input[type="url"],
+    input[type="date"],
+    input[type="datetime-local"],
+    input[type="month"],
+    input[type="time"],
+    input[type="week"]
+  ) {
+  cursor: text !important;
+}
+
+.nail-cursor-root {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 24px;
+  height: 24px;
+  /* Pulls the nail's point, drawn at (4,4), onto the true pointer position. */
+  margin: calc(-24px / 11) 0 0 calc(-24px / 11);
+  z-index: 2147483000;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 160ms ease;
+  will-change: transform;
+}
+.nail-cursor-root[data-visible="true"] {
+  opacity: 1;
+}
+.nail-cursor-root[data-over="text"] {
+  opacity: 0;
+}
+
+.nail-cursor-art {
+  position: absolute;
+  inset: 0;
+  display: block;
+  /* Every state change pivots on the point, so the tip never leaves the pixel
+     it is addressing while the tool grows, tilts or sinks. */
+  transform-origin: calc(24px / 11) calc(24px / 11);
+  transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.nail-cursor-root[data-over="interactive"] .nail-cursor-art {
+  transform: rotate(-8deg);
+}
+.nail-cursor-root[data-press="true"] .nail-cursor-art {
+  transform: scale(0.93) rotate(3deg);
+}
+
+.nail-cursor-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 2px 3px rgba(20, 12, 6, 0.35));
+}
+
+/* The brass ring that opens under the point on anything clickable -- the
+   pilot hole, marked before the blow. */
+.nail-cursor-halo {
+  position: absolute;
+  left: calc(24px / 11);
+  top: calc(24px / 11);
+  width: 18px;
+  height: 18px;
+  margin: -9px 0 0 -9px;
+  border-radius: 50%;
+  border: 1.5px solid var(--fc-nail-head);
+  opacity: 0;
+  transform: scale(0.5);
+  transition: opacity 200ms ease, transform 280ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.nail-cursor-root[data-over="interactive"] .nail-cursor-halo {
+  opacity: 0.5;
+  transform: scale(1);
+}
+
+.nail-art-body {
+  fill: var(--fc-nail-body);
+  stroke: var(--fc-nail-edge);
+  stroke-width: 1.6;
+  stroke-linejoin: miter;
+  paint-order: stroke fill;
+}
+.nail-art-head {
+  fill: var(--fc-nail-head);
+}
+.nail-art-sheen {
+  fill: var(--fc-nail-sheen);
+  stroke: none;
+  opacity: 0.5;
+}
+
+/* --- The strike ---------------------------------------------------------
+   One layer for desktop mouse clicks. It is fixed and clipped so a
+   splinter thrown near the viewport edge can never widen the page. */
+.nail-strike-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 2147482999;
+  pointer-events: none;
+  overflow: hidden;
+}
+/* Zero-sized, parked on the point that was struck: every piece below is
+   offset from the nail's point, and (27,27) is its head. */
+.nail-strike {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The hammer lands 200ms in (38% of its 520ms swing). Everything the blow
+   throws off is delayed to meet it there. */
+.nail-strike-hammer {
+  position: absolute;
+  left: 9px;
+  top: 0;
+  width: 72px;
+  height: 72px;
+  transform-origin: 64px 8px;
+  filter: drop-shadow(0 3px 6px rgba(20, 12, 6, 0.3));
+  animation: nail-hammer 520ms both;
+}
+@keyframes nail-hammer {
+  0% {
+    opacity: 0;
+    transform: rotate(-34deg);
+    animation-timing-function: cubic-bezier(0.42, 0, 0.95, 0.45);
+  }
+  14% {
+    opacity: 1;
+    transform: rotate(-25deg);
+    animation-timing-function: cubic-bezier(0.42, 0, 0.95, 0.45);
+  }
+  38% {
+    transform: rotate(0deg);
+    animation-timing-function: cubic-bezier(0.18, 1.1, 0.4, 1);
+  }
+  52% {
+    transform: rotate(-10deg);
+    animation-timing-function: ease-in-out;
+  }
+  66% {
+    opacity: 1;
+    transform: rotate(-4deg);
+    animation-timing-function: ease-in;
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(-30deg);
+  }
+}
+
+.nail-hammer-head,
+.nail-hammer-handle,
+.nail-hammer-grip,
+.nail-hammer-face {
+  stroke: var(--fc-nail-edge);
+  stroke-width: 2;
+  stroke-linejoin: miter;
+  paint-order: stroke fill;
+}
+.nail-hammer-head { fill: var(--fc-hammer-steel); }
+.nail-hammer-face { fill: var(--fc-nail-head); }
+.nail-hammer-handle { fill: var(--fc-hammer-wood); }
+.nail-hammer-grip { fill: var(--fc-hammer-grip); stroke: none; }
+
+/* The shockwave, out of the entry point rather than off the head: this is the
+   timber taking the nail, which is the part worth marking. */
+.nail-strike-ring {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 16px;
+  height: 16px;
+  margin: -8px 0 0 -8px;
+  border-radius: 50%;
+  border: 2px solid var(--fc-nail-head);
+  opacity: 0;
+  animation: nail-ring 520ms cubic-bezier(0.16, 1, 0.3, 1) 190ms forwards;
+}
+.nail-strike-ring--wide {
+  border-color: var(--fc-cane-soft);
+  animation-duration: 700ms;
+  animation-delay: 250ms;
+}
+@keyframes nail-ring {
+  0% {
+    transform: scale(0.35);
+    opacity: 0.85;
+  }
+  60% {
+    opacity: 0.32;
+  }
+  100% {
+    transform: scale(3.4);
+    opacity: 0;
+  }
+}
+
+/* Steel on steel, at the head. */
+.nail-strike-flash {
+  position: absolute;
+  left: 27px;
+  top: 27px;
+  width: 24px;
+  height: 24px;
+  margin: -12px 0 0 -12px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--fc-nail-head) 0%, transparent 68%);
+  opacity: 0;
+  animation: nail-flash 260ms ease-out 190ms forwards;
+}
+@keyframes nail-flash {
+  0% {
+    opacity: 0.9;
+    transform: scale(0.4);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.6);
+  }
+}
+
+.nail-strike-chip {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 6px;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--fc-cane);
+  transform-origin: 0 50%;
+  opacity: 0;
+  /* Each splinter leaves on its own beat -- see CHIPS in nail-cursor.tsx. */
+  animation: nail-chip 520ms cubic-bezier(0.16, 1, 0.3, 1) calc(190ms + var(--chip-lag, 0ms))
+    forwards;
+}
+@keyframes nail-chip {
+  0% {
+    transform: rotate(var(--chip-angle)) translateX(2px) scaleX(0.4);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.95;
+  }
+  100% {
+    transform: rotate(var(--chip-angle)) translateX(var(--chip-distance)) scaleX(1);
+    opacity: 0;
+  }
+}
+
+/* The tracked cursor takes the same blow, on the same beat. */
+.nail-cursor-art[data-strike="true"] .nail-cursor-svg {
+  animation: nail-drive 480ms cubic-bezier(0.16, 1, 0.3, 1) 190ms;
+}
+@keyframes nail-drive {
+  0% {
+    transform: translate(0, 0);
+  }
+  22% {
+    transform: translate(-4.5px, -4.5px);
+  }
+  55% {
+    transform: translate(1.5px, 1.5px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+/* Someone who has asked for less motion still gets the feedback, just not the
+   swing: the ring opens immediately and nothing else moves. */
+@media (prefers-reduced-motion: reduce) {
+  .nail-strike-hammer,
+  .nail-strike-chip,
+  .nail-strike-ring--wide {
+    display: none;
+  }
+  .nail-strike-ring {
+    animation-duration: 280ms;
+    animation-delay: 0ms;
+  }
+  .nail-strike-flash {
+    animation-duration: 180ms;
+    animation-delay: 0ms;
+  }
+  .nail-cursor-art {
+    transition: none;
+  }
+  .nail-cursor-art[data-strike="true"] .nail-cursor-svg {
+    animation: none;
+  }
+}
+/* A high-contrast or forced-colours setting is a request for the pointer the
+   OS drew, at the size and colour that setting chose. It outranks the world. */
+@media (forced-colors: active) {
+  html.nail-cursor,
+  html.nail-cursor * {
+    cursor: auto !important;
+  }
+  .nail-cursor-root,
+  .nail-strike-layer {
+    display: none;
+  }
+}
+
+/* Guard against stale device state while React processes a media change. */
+@media (max-width: 767px), (hover: none), (pointer: coarse) {
+  html.nail-cursor,
+  html.nail-cursor * {
+    cursor: revert !important;
+  }
+  .nail-cursor-root,
+  .nail-strike-layer {
+    display: none;
+  }
+}
+
+@media print {
+  .nail-cursor-root,
+  .nail-strike-layer {
+    display: none;
+  }
+}
+
+/* ---------------------------------------------------------------- studio tour
+   The guided tour's spotlight and card. See components/design/studio/
+   studio-tour.tsx for why the dim is four panels rather than one sheet with a
+   hole in it: the control being explained has to be genuinely uncovered, or it
+   loses its own hover and title behaviour at the exact moment it is being
+   described. */
+.studio-tour {
+  position: fixed;
+  inset: 0;
+  z-index: 45; /* over the studio's chrome, under its dialogs (z-50). */
+}
+
+.studio-tour-scrim {
+  position: fixed;
+  background: rgba(24, 15, 9, 0.62);
+  animation: studio-tour-fade 180ms ease both;
+}
+
+.studio-tour-ring {
+  position: fixed;
+  pointer-events: none;
+  border-radius: 14px;
+  border: 2px solid var(--fc-accent-2, #c67d38);
+  box-shadow:
+    0 0 0 4px color-mix(in srgb, var(--fc-accent, #c67d38) 22%, transparent),
+    0 10px 30px rgba(20, 12, 6, 0.45);
+  transition:
+    top 220ms cubic-bezier(0.16, 1, 0.3, 1),
+    left 220ms cubic-bezier(0.16, 1, 0.3, 1),
+    width 220ms cubic-bezier(0.16, 1, 0.3, 1),
+    height 220ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.studio-tour-card {
+  position: fixed;
+  max-width: calc(100vw - 24px);
+  border-radius: 16px;
+  border: 1px solid var(--fc-border);
+  background: var(--fc-panel);
+  padding: 16px;
+  box-shadow: 0 18px 50px rgba(20, 12, 6, 0.4);
+  animation: studio-tour-rise 220ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  transition:
+    top 220ms cubic-bezier(0.16, 1, 0.3, 1),
+    left 220ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.studio-tour-count {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--fc-ink-accent);
+}
+
+.studio-tour-title {
+  margin-top: 6px;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--fc-text);
+}
+
+.studio-tour-body {
+  margin-top: 6px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--fc-muted);
+}
+
+.studio-tour-actions {
+  margin-top: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.studio-tour-nav {
+  display: flex;
+  gap: 8px;
+}
+
+.studio-tour-skip,
+.studio-tour-back,
+.studio-tour-next {
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 8px 14px;
+  transition:
+    background-color 150ms ease,
+    color 150ms ease,
+    transform 150ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.studio-tour-skip:active,
+.studio-tour-back:active,
+.studio-tour-next:active {
+  transform: scale(0.97);
+}
+
+.studio-tour-skip {
+  padding-left: 2px;
+  padding-right: 2px;
+  color: var(--fc-muted);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.studio-tour-skip:hover {
+  color: var(--fc-text);
+}
+
+.studio-tour-back {
+  border: 1px solid var(--fc-border);
+  color: var(--fc-text);
+}
+.studio-tour-back:disabled {
+  opacity: 0.4;
+}
+
+.studio-tour-next {
+  background: var(--fc-btn, #b26a38);
+  color: var(--fc-btn-fg, #fff);
+}
+.studio-tour-next:hover {
+  background: var(--fc-btn-hover, #9c5b2e);
+}
+
+@keyframes studio-tour-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes studio-tour-rise {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .studio-tour-scrim,
+  .studio-tour-card {
+    animation: none;
+  }
+  .studio-tour-ring,
+  .studio-tour-card {
+    transition: none;
+  }
+}
+
+/* The card's arrow. A triangle on the edge that faces the control, sitting on
+   the target's centre rather than the card's -- those differ whenever the card
+   had to be pushed sideways to stay on screen. Drawn as two stacked triangles
+   so the border reads through it: the back one is the border colour, the front
+   one the panel fill, one pixel in. */
+.studio-tour-arrow {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 9px solid transparent;
+  border-right: 9px solid transparent;
+  transform: translateX(-9px);
+}
+.studio-tour-arrow--up {
+  top: -9px;
+  border-bottom: 9px solid var(--fc-panel);
+  filter: drop-shadow(0 -1px 0 var(--fc-border));
+}
+.studio-tour-arrow--down {
+  bottom: -9px;
+  border-top: 9px solid var(--fc-panel);
+  filter: drop-shadow(0 1px 0 var(--fc-border));
+}
+
+/* ---------------------------------------------------------------- *
+ * The desktop measure.
+ *
+ * `.dashboard-main` was `flex: 1 1 auto; width: 100%` with no ceiling, so on
+ * a 1920 monitor the content column measured 1608px: a page heading with a
+ * 1608px line box, order rows 780 wide and 98 tall, and a single "Upload new
+ * receipt" button stretched to 746px. None of that is a mobile bug. It is the
+ * phone's own rule, `fill the width`, still applying on a screen five times
+ * wider.
+ *
+ * The ceiling is 1600 rather than something tighter, because the point is to
+ * use the monitor, not to hold the page in a narrow strip with empty margins
+ * either side. At 1920 the sidebar and the body's own padding take 312, so
+ * 1600 is effectively the whole screen; it only starts to bite on an ultrawide,
+ * where an unbounded column really would be unreadable.
+ *
+ * The stretch is not solved by the ceiling, then. It is solved per element:
+ * running text carries its own measure (see .dashboard-main :is(p)), buttons
+ * size to their label from lg up, and lists that would otherwise become very
+ * long rows are laid out in columns instead. The width gets used; nothing
+ * individual gets stretched.
+ *
+ * Below lg the sidebar is a drawer and the bar is under the thumb; the phone
+ * layout wants the full width and keeps it.
+ * ---------------------------------------------------------------- */
+@media (min-width: 1024px) {
+  .dashboard-main {
+    max-width: 1600px;
+    margin-inline: auto;
+  }
+
+  /*
+   * A line of prose stops being readable somewhere past about 80 characters,
+   * whatever the container is doing. This is the rule that lets the container
+   * grow safely: the column can be 1600 wide and a paragraph inside it still
+   * breaks where the eye can follow it back.
+   *
+   * Scoped to running text only. Anything laid out in a row -- a table line, a
+   * row of chips, a label beside a value -- is not prose and is left alone.
+   */
+  .dashboard-main p:not([class*="grid"]):not([class*="flex"]) {
+    max-width: 78ch;
+  }
+}
+
+/* ---------------------------------------------------------------- *
+ * A photograph of the piece, where there is one.
+ *
+ * The frame beside this was built for the baked renders: a cutout on
+ * transparency, floated in the middle of a padded box with a drop shadow
+ * under it. A photograph is the opposite kind of picture. It carries its own
+ * room and its own light, so it wants the whole frame, hard edges and no
+ * shadow of ours on top of its own.
+ *
+ * Only the frames that actually hold a photograph change; every piece still
+ * shown as a render keeps the padding and the float it was drawn for.
+ * ---------------------------------------------------------------- */
+.ftp-shot-frame.has-photo {
+  padding: 0;
+  overflow: hidden;
+  border-style: solid;
+  background: var(--fc-cane-soft);
+}
+
+.ftp-photo {
+  width: 100%;
+  /* A fixed height, like the render it replaces. Left to size itself the
+     portrait photographs drove the frame to 710px tall and pushed the piece's
+     own name and description off the card. */
+  height: 148px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .ftp-card:not(.is-unavailable):hover .ftp-photo {
+    transform: scale(1.04);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ftp-photo { transition: none; }
+  .ftp-card:not(.is-unavailable):hover .ftp-photo { transform: none; }
+}
+
+/* The spotlight layout gives its frame a fixed height; the photo follows it. */
+.ftp-slide .ftp-photo { height: 230px; }
+
+/* The category tile, when its lead piece is a photograph rather than a render.
+   Same reasoning as .ftp-photo: the render is a cutout that wants 80% of the
+   tile and air around it, the photograph is a scene that wants all of it. */
+.ftp-cat-shot.has-photo {
+  background: var(--fc-cane-soft);
+  /* Square, where the 4:3 frame was drawn for cutout renders. These are
+     photographs and most are tall portraits: cropping 1:1.78 down to 4:3 threw
+     away three fifths of the picture and returned a close-up of whatever
+     happened to sit at that height, which for the chair was the top of its
+     backrest and for the sofa was the painting above it. A square keeps far
+     more of a portrait and costs a landscape almost nothing. */
+  aspect-ratio: 1 / 1;
+}
+.ftp-cat-shot .ftp-cat-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Low, not centred. These are tall room photographs and the furniture in
+     them sits below the middle of the frame: a centred crop of the chair shot
+     returned the top edge of its backrest and a wall, and the sofa shot
+     returned the picture hanging above the sofa. */
+  object-position: center 55%;
+}
+
+/* ---------------------------------------------------------------- *
+ * The loading strand (app/loading.tsx).
+ *
+ * One cane travelling along its track, in the lattice's own easing rather
+ * than a linear crawl: it enters quickly and settles, the way a strand is
+ * drawn through a weave. Transform only, so it never costs a layout pass.
+ * ---------------------------------------------------------------- */
+@keyframes fc-loading-strand {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(300%); }
+}
+
+.fc-loading-strand {
+  animation: fc-loading-strand 1.4s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* Still a loading bar, just not a moving one. */
+  .fc-loading-strand {
+    animation: none;
+    transform: translateX(33%);
+    will-change: auto;
+  }
+}
+
+/* ---------------------------------------------------------- studio tool tray
+   The desktop studio's view tools, as a tray at the foot of the piece. The
+   brass inlay under a tool that is on is the one accent the tray carries. */
+.studio-tray {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  gap: 2px;
+  padding: 6px;
+  border: 1px solid var(--fc-border);
+  border-radius: 18px;
+  background: color-mix(in srgb, var(--fc-panel) 90%, transparent);
+  box-shadow: 0 18px 40px -14px rgba(43, 24, 16, 0.38), 0 2px 6px rgba(43, 24, 16, 0.06);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  animation: studio-tray-in 520ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.studio-tray-divider {
+  align-self: center;
+  width: 1px;
+  height: 34px;
+  margin: 0 6px;
+  background: var(--fc-border);
+}
+.studio-tray-tool {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  width: 4.5rem;
+  padding: 10px 6px 11px;
+  border-radius: 12px;
+  color: var(--fc-text);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  transition: background-color 160ms ease, color 160ms ease, transform 160ms cubic-bezier(0.16, 1, 0.3, 1), opacity 160ms ease;
+}
+.studio-tray-tool:active { transform: scale(0.95); }
+.studio-tray-tool:disabled { opacity: 0.4; pointer-events: none; }
+.studio-tray-tool:focus-visible { outline: 2px solid var(--fc-accent); outline-offset: 2px; }
+.studio-tray-tool[data-active] {
+  background: color-mix(in srgb, var(--fc-accent) 14%, transparent);
+  color: var(--fc-ink-accent);
+}
+@media (hover: hover) {
+  .studio-tray-tool:not([data-active]):hover { background: var(--fc-cane-soft); }
+}
+.studio-tray-label { line-height: 1; white-space: nowrap; }
+.studio-tray-inlay {
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 4px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--fc-accent);
+  transform: scaleX(0);
+  transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.studio-tray-tool[data-active] .studio-tray-inlay { transform: scaleX(1); }
+.studio-tray-tip {
+  pointer-events: none;
+  position: absolute;
+  bottom: calc(100% + 12px);
+  left: 50%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 9px;
+  background: var(--fc-text);
+  color: var(--fc-bg);
+  font-size: 11px;
+  font-weight: 500;
+  white-space: nowrap;
+  box-shadow: 0 10px 24px -8px rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  transform: translate(-50%, 4px) scale(0.97);
+  transform-origin: 50% 100%;
+  transition: opacity 140ms ease, transform 200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.studio-tray-tip kbd {
+  display: inline-grid;
+  place-items: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+  border: 1px solid color-mix(in srgb, var(--fc-bg) 35%, transparent);
+  border-bottom-width: 2px;
+  border-radius: 5px;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 10px;
+  font-weight: 700;
+}
+.studio-tray-tool:hover .studio-tray-tip,
+.studio-tray-tool:focus-visible .studio-tray-tip {
+  opacity: 1;
+  transform: translate(-50%, 0) scale(1);
+  transition-delay: 250ms, 250ms;
+}
+@keyframes studio-tray-in {
+  from { opacity: 0; transform: translateY(12px) scale(0.98); }
+  to { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .studio-tray { animation: none; }
+  .studio-tray-inlay, .studio-tray-tip, .studio-tray-tool { transition: none; }
+}
+
+/* ---------------------------------------------------------------
+ * A piece's default-design preview (public/models/<id>/preview.jpg).
+ *
+ * The studio's product shot on its own light viewport colour. Contained
+ * rather than cropped -- a sofa is twice as wide as it is tall and a cabinet
+ * the other way round, and cropping either cuts the piece -- on a frame the
+ * same colour as the shot, so the letterbox does not show.
+ * ---------------------------------------------------------------- */
+.ftp-shot-frame.has-preview { background: #ece4d9; }
+.ftp-preview { object-fit: contain; }
+
+/* The category tile's icon (furniture-type-picker CategoryTile): accent ink on
+   a kind that opens, lifting a little under the pointer the way the pictures
+   it replaced used to. */
+.ftp-cat:not([aria-disabled="true"]) .ftp-cat-icon {
+  color: var(--fc-ink-accent);
+  transition: transform 220ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+@media (hover: hover) and (pointer: fine) {
+  .ftp-cat:not([aria-disabled="true"]):hover .ftp-cat-icon { transform: translateY(-3px) scale(1.06); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ftp-cat:not([aria-disabled="true"]) .ftp-cat-icon { transition: none; }
+  .ftp-cat:not([aria-disabled="true"]):hover .ftp-cat-icon { transform: none; }
+}
+
+/* The category tile's picture: its first piece's default-design preview, a
+   4:3 product shot that fills the 4:3 frame edge to edge on its own colour. */
+.ftp-cat-shot.has-preview { background: #ece4d9; }
+.ftp-cat-shot img.ftp-cat-preview { width: 100%; height: 100%; object-fit: cover; }

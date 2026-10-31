@@ -1,0 +1,11 @@
+Model Information:
+* title:	Cushion Chair
+* source:	https://sketchfab.com/3d-models/cushion-chair-40f47a44efd54271bfa6f0f71f896d58
+* author:	durgaprasadpuppala (https://sketchfab.com/durgaprasadpuppala)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Cushion Chair" (https://sketchfab.com/3d-models/cushion-chair-40f47a44efd54271bfa6f0f71f896d58) by durgaprasadpuppala (https://sketchfab.com/durgaprasadpuppala) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
